@@ -11,6 +11,17 @@ module.exports = () => {
       path: path.join(__dirname, "dist"),
       filename: "bundle.js"
     },
+    devtool: "eval",
+    devServer: {
+      port: 3000,
+      historyApiFallback: true,
+      open: true,
+      hot: true,
+      liveReload: false,
+      client: {
+        overlay: true
+      }
+    },
     module: {
       rules: [
         {
