@@ -1,16 +1,13 @@
 name: PR
-on: 
-  pull_request:
-    types:
-      - opened
+on: pull_request
 
 jobs:
-  deploy:
+  Test:
     runs-on: ubuntu-latest
     steps:
       - name: Pull code
         uses: actions/checkout@v3
       - name: install dependencies
-        run: npm i
+        run: cd frontend && npm i
       - name: Test
         run: cd frontend && npm run test
