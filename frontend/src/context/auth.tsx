@@ -5,12 +5,9 @@ export interface AuthContextInterface {
   setIsUserLoggedIn: (val: boolean) => void
 }
 
-const defaultValue: AuthContextInterface = {
+export const AuthContext: React.Context<AuthContextInterface> = createContext({
   isUserLoggedIn: false,
-  setIsUserLoggedIn: (val: boolean) => {},
-}
-
-export const AuthContext: React.Context<AuthContextInterface> =
-  createContext(defaultValue)
+  setIsUserLoggedIn: (val: boolean) => val,
+} as AuthContextInterface)
 
 export const AuthProvider = AuthContext.Provider

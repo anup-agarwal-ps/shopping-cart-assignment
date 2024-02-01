@@ -14,16 +14,13 @@ export interface CartContextInterface {
   setIsCartDisplayed: (val: boolean) => void
 }
 
-const defaultValue: CartContextInterface = {
+export const CartContext: React.Context<CartContextInterface> = createContext({
   cartItems: [] as CartContextItem[],
   addCartItem: (product: Product, quantityToBeAdded: number) => {},
   loading: false,
   setLoading: (val: boolean) => {},
   isCartDisplayed: false,
   setIsCartDisplayed: (val: boolean) => {},
-}
-
-export const CartContext: React.Context<CartContextInterface> =
-  createContext(defaultValue)
+} as CartContextInterface)
 
 export const CartProvider = CartContext.Provider
