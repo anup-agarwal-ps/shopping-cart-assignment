@@ -12,7 +12,6 @@ import { Suspense, useState } from "react"
 import { Product } from "./apis/product"
 import { Loader } from "./components/Loader"
 import PrivateRoute from "./HOC/private-route"
-import Cart from "./views/cart"
 import { AuthProvider } from "./context/auth"
 import LoggedOutRoute from "./HOC/logged-out-route"
 
@@ -20,6 +19,7 @@ const LazyHome = React.lazy(() => import("./views/home"))
 const LazyProducts = React.lazy(() => import("./views/products"))
 const LazyLogin = React.lazy(() => import("./views/auth/login"))
 const LazyRegister = React.lazy(() => import("./views/auth/signup"))
+const LazyCart = React.lazy(() => import("./views/cart"))
 
 Axios.defaults.baseURL = process.env.API_URL
 
@@ -74,7 +74,7 @@ function App() {
         <Router>
           <Suspense fallback={null}>
             {loading && <Loader />}
-            {isCartDisplayed ? <Cart /> : null}
+            {isCartDisplayed ? <LazyCart /> : null}
             <Routes>
               <Route
                 path={HOME_PAGE}

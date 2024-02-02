@@ -66,3 +66,5 @@ typings/
 /frontend/.DS_Store
 /frontend/build/
 /frontend/dist/
+
+.vscode
