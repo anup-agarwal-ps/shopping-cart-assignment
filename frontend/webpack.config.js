@@ -3,15 +3,16 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const Dotenv = require("dotenv-webpack")
 const path = require("path")
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 
-module.exports = () => {
-  return {
+module.exports = (env, args) => {
+  const config = {
     entry: "./src/index",
     output: {
-      path: path.join(__dirname, "dist"),
-      filename: "bundle.js"
+      path: path.join(__dirname, "build"),
+      filename: "bundle.js",
     },
-    devtool: "eval",
     devServer: {
       port: 3000,
       historyApiFallback: true,
@@ -19,8 +20,14 @@ module.exports = () => {
       hot: true,
       liveReload: false,
       client: {
-        overlay: true
+        overlay: false
       }
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new CssMinimizerPlugin()
+      ]
     },
     module: {
       rules: [
@@ -32,7 +39,15 @@ module.exports = () => {
         {
           test: /\.(css|scss|sass)/,
           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
-        }
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [
+            {
+              loader: "file-loader",
+            },
+          ],
+        },
       ]
     },
     resolve: {
@@ -45,6 +60,16 @@ module.exports = () => {
       new Dotenv({
         path: path.join(__dirname, ".env"),
       }),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: "public/static/images", to: "static/images" },
+          // Add more patterns if you have other static assets to copy
+        ],
+      }),
     ]
   }
+  if (args.mode !== "production") {
+    config.devtool = "eval"
+  }
+  return config;
 }
