@@ -63,7 +63,6 @@ module.exports = (env, args) => {
       new CopyWebpackPlugin({
         patterns: [
           { from: "public/static/images", to: "static/images" },
-          // Add more patterns if you have other static assets to copy
         ],
       }),
     ]
