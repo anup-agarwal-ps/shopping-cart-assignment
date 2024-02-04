@@ -11,9 +11,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "canned": "^0.3.12",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "eslint": "^8.31.0",
