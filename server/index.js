@@ -1,10 +1,14 @@
+require("dotenv").config()
 const express = require('express')
 const cors = require('cors')
+const jwt = require('jsonwebtoken')
+const bodyParser = require('body-parser');
 const app = express()
-const port = 5000
+const port = process.env.PORT
 
 app.use(cors())
-
+app.use(bodyParser.json());
+const secretKey = process.env.SECRET_KEY;
 
 app.post('/addToCart', (req, res) => {
     res.send({
@@ -12,7 +16,6 @@ app.post('/addToCart', (req, res) => {
         "responseMessage": "Product added to cart successfully"
     })
 })
-
 app.get('/banners', (req, res) => {
     res.send([
         {
@@ -371,5 +374,35 @@ app.get('/products', (req, res) => {
     )
 })
 
+app.post('/auth', (req, res) => {
+    const { username, password } = req.body;
+    if (username === 'username' && password === 'password') {
+        res.send({
+            token: jwt.sign({ username }, secretKey)
+        })
+    } else {
+        res.status(401).send({
+            message: 'invalid credentials'
+        })
+    }
+})
 
+app.get('/auth/me', (req, res) => {
+    const token = req.headers.authorization;
+    try {
+        jwt.verify(token, secretKey)
+        res.status(200).send(
+            jwt.decode(token)
+        )
+
+
+    }
+    catch (error) {
+        res.status(401).send({
+            message: 'invalid token'
+        })
+    }
+
+}
+)
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
