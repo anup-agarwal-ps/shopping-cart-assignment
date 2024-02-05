@@ -14,7 +14,7 @@ jobs:
         run: cd frontend && npm i
       - name: Test
         run: cd frontend && npm run test
-  build:
+  Build:
     needs: Test
     runs-on: ubuntu-latest
     steps:
