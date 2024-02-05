@@ -14,6 +14,14 @@ jobs:
         run: cd frontend && npm i
       - name: Test
         run: cd frontend && npm run test
+  build:
+    needs: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull code
+        uses: actions/checkout@v3
+      - name: install dependencies
+        run: cd frontend && npm i
       - name: Build
         run: cd frontend && npm run build
       - name: Upload artifact
