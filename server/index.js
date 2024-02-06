@@ -5,20 +5,15 @@ const jwt = require("jsonwebtoken")
 const bodyParser = require("body-parser")
 const router = require("./controller/banner")
 const { bannerRouter } = require("./handler/banner")
+const { authRouter } = require("./handler/auth")
 const app = express()
 const port = process.env.PORT
 
 app.use(cors())
 app.use(bodyParser.json())
-const secretKey = process.env.SECRET_KEY
 
-app.post("/addToCart", (req, res) => {
-  res.send({
-    response: "Success",
-    responseMessage: "Product added to cart successfully",
-  })
-})
 app.use("/banners", bannerRouter)
+app.use("/auth", authRouter)
 
 app.get("/categories", (req, res) => {
   res.send([
@@ -81,7 +76,6 @@ app.get("/categories", (req, res) => {
     },
   ])
 })
-
 app.get("/products", (req, res) => {
   res.send([
     {
@@ -360,29 +354,11 @@ app.get("/products", (req, res) => {
     },
   ])
 })
-
-app.post("/auth", (req, res) => {
-  const { username, password } = req.body
-  if (username === "username" && password === "password") {
-    res.send({
-      token: jwt.sign({ username }, secretKey),
-    })
-  } else {
-    res.status(401).send({
-      message: "invalid credentials",
-    })
-  }
+app.post("/addToCart", (req, res) => {
+  res.send({
+    response: "Success",
+    responseMessage: "Product added to cart successfully",
+  })
 })
 
-app.get("/auth/me", (req, res) => {
-  const token = req.headers.authorization
-  try {
-    jwt.verify(token, secretKey)
-    res.status(200).send(jwt.decode(token))
-  } catch (error) {
-    res.status(401).send({
-      message: "invalid token",
-    })
-  }
-})
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
