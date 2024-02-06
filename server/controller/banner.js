@@ -1,4 +1,3 @@
-
 const getBanners = (req, res) => {
   res.send([
     {
