@@ -2,8 +2,9 @@ name: Backend
 on:
   pull_request:
     branches: master
-    paths-ignore:
-      - "frontend/**"
+    paths:
+      - '**/*'
+      - '!frontend/**'
 
 jobs:
   Test:
