@@ -1,9 +1,10 @@
-name: PR
+name: Frontend
 on:
   pull_request:
     types: [opened, edited]
     branches: master
-  workflow_dispatch:
+    paths: |
+      /frontend/**
 
 jobs:
   Test:
