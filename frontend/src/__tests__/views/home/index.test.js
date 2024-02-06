@@ -15,7 +15,7 @@ describe("Test categories", () => {
           {
             description: "string",
             enabled: true,
-            id: 4,
+            id: 1,
             imageUrl: "string",
             key: "string",
             name: "string",
