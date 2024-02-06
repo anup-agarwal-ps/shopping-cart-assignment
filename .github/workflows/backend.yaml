@@ -1,0 +1,17 @@
+name: Frontend
+on:
+  pull_request:
+    branches: master
+    paths-ignore:
+      - "frontend/**"
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull code
+        uses: actions/checkout@v3
+      - name: install dependencies
+        run: cd frontend && npm i
+      - name: Test
+        run: echo "Testing..."
