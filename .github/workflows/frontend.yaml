@@ -4,7 +4,7 @@ on:
     types: [opened, edited]
     branches: master
     paths: |
-      /frontend/**
+      ./frontend/**
 
 jobs:
   Test:
