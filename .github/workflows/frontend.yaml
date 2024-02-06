@@ -2,7 +2,7 @@ name: Frontend
 on:
   pull_request:
     branches: master
-    paths: |
+    paths: 
       - /frontend/**/*
 
 jobs:
