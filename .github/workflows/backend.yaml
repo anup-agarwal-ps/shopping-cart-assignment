@@ -1,0 +1,16 @@
+name: Backend
+on:
+  pull_request:
+    branches: master
+    paths:
+      - '**/*'
+      - '!frontend/**'
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull code
+        uses: actions/checkout@v3
+      - name: Test
+        run: echo "Testing..."
