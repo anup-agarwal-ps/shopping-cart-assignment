@@ -1,7 +1,6 @@
 name: Backend
 on:
   pull_request:
-    types: [opened, edited]
     branches: master
     paths-ignore: |
       ./frontend/**
