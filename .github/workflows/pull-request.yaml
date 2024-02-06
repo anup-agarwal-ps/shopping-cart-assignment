@@ -1,6 +1,7 @@
 name: PR
 on:
   pull_request:
+    types: [opened, edited]
     branches: master
   workflow_dispatch:
 
