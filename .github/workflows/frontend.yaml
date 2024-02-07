@@ -30,3 +30,13 @@ jobs:
         with:
           name: bundle
           path: ./frontend/build
+  Deploy:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: bundle
+      - name: Output content
+        run: ls -l
