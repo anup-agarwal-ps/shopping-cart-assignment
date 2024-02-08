@@ -5,4 +5,4 @@ npm run format
 cd frontend 
 npm run format 
 cd ..
-git add -A .
+git add -u .
