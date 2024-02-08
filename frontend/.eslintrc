@@ -12,7 +12,8 @@
     "linebreak-style": 1,
     "quotes": ["error", "double"],
     "react/react-in-jsx-scope": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "import/export": "off"
   },
   "parserOptions": {
     "ecmaVersion": 2021,

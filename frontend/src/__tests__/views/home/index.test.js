@@ -1,8 +1,7 @@
 import { rest } from "msw"
 import { getServer } from "../../../test-utils/setup-server"
 import Products from "../../../views/home"
-import { render, screen } from "@testing-library/react"
-import { MemoryRouter } from "react-router"
+import { render, screen } from "../../../test-utils/render-utils"
 
 jest.mock("../../../layout/banner/index.tsx")
 
@@ -47,11 +46,7 @@ describe("Test categories", () => {
   afterEach(() => server.resetHandlers())
   afterAll(() => server.close())
   it("should test categories", async () => {
-    render(
-      <MemoryRouter>
-        <Products />
-      </MemoryRouter>,
-    )
+    render(<Products />)
     expect(await screen.findAllByRole("listitem")).toHaveLength(3)
   })
 })

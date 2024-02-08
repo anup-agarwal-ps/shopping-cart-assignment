@@ -1,5 +1,5 @@
 import { CartContext } from "../../context/cart"
-const { render, screen, waitFor } = require("@testing-library/react")
+import { waitFor, render, screen } from "../../test-utils/render-utils"
 const { ProductCard } = require("../../components/product-card")
 
 jest.mock("../../context/cart")

@@ -5,6 +5,7 @@ const Dotenv = require("dotenv-webpack")
 const path = require("path")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 
 module.exports = (env, args) => {
   const config = {
@@ -84,6 +85,10 @@ module.exports = (env, args) => {
           { from: "public/static/images", to: "static/images" },
         ],
       }),
+      new BundleAnalyzerPlugin({
+        analyzerMode: "server",
+        openAnalyzer: true
+      })
     ]
   }
   if (args.mode !== "production") {

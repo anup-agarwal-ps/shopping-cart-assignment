@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen } from "../../test-utils/render-utils"
 import { Loader } from "../../components/Loader"
 
 it("should first", () => {

@@ -11,7 +11,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test-coverage": "jest --coverage --watchAll=false",
-    "test-coverage:watch": "jest --coverage"
+    "analyze": "webpack -c webpack.analyzer.config.js --mode=production"
   },
   "keywords": [],
   "author": "",
@@ -50,6 +50,7 @@
     "node-sass": "^9.0.0",
     "sass-loader": "^14.0.0",
     "webpack": "^5.90.0",
+    "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
