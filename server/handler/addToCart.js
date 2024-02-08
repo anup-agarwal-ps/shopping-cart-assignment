@@ -1,6 +1,6 @@
-const {Router} = require('express')
-const {addToCartController} = require("../controller/addToCart")
+const { Router } = require("express")
+const { addToCartController } = require("../controller/addToCart")
 const addToCartRouter = Router()
 
-addToCartRouter.get("/",addToCartController.getAddToCart)
-module.exports = {addToCartRouter}
+addToCartRouter.get("/", addToCartController.getAddToCart)
+module.exports = { addToCartRouter }
