@@ -1,4 +1,5 @@
 const secretKey = process.env.SECRET_KEY
+const jwt = require("jsonwebtoken")
 
 const login = (req, res) => {
   const { username, password } = req.body
