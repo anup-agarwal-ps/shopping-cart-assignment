@@ -26,26 +26,13 @@ module.exports = (env, args) => {
     optimization: {
       minimize: true,
       minimizer: [
+        "...",
         new CssMinimizerPlugin()
       ],
       splitChunks: {
-        cacheGroups: {
-          axios: {
-            test: /[\\/]node_modules[\\/]axios[\\/]lib/,
-            chunks: "initial",
-            name: "axios"
-          },
-          reactdomcjs: {
-            test: /[\\/]node_modules[\\/]react-dom[\\/]/,
-            chunks: "initial",
-            name: "react-dom-cjs"
-          },
-          router: {
-            test: /[\\/]node_modules[\\/]@remix-run[\\/]/,
-            chunks: "initial",
-            name: "remix"
-          }
-        }
+        chunks: "all",
+        maxSize: 140000,
+        minSize: 50000,
       }
     },
     module: {
@@ -61,11 +48,7 @@ module.exports = (env, args) => {
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
-          use: [
-            {
-              loader: "file-loader",
-            },
-          ],
+          type: "asset/resource"
         },
       ]
     },
