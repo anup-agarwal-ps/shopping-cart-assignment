@@ -5,6 +5,8 @@ const Dotenv = require("dotenv-webpack")
 const path = require("path")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const { PurgeCSSPlugin } = require("purgecss-webpack-plugin")
+const glob = require("glob")
 
 module.exports = (env, args) => {
   const config = {
@@ -67,6 +69,9 @@ module.exports = (env, args) => {
           { from: "public/static/images", to: "static/images" },
         ],
       }),
+      new PurgeCSSPlugin({
+        paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true })
+      })
     ]
   }
   if (args.mode !== "production") {

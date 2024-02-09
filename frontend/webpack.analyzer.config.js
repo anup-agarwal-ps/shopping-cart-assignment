@@ -6,6 +6,8 @@ const path = require("path")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
+const { PurgeCSSPlugin } = require("purgecss-webpack-plugin")
+const glob = require("glob")
 
 module.exports = (env, args) => {
   const config = {
@@ -27,6 +29,7 @@ module.exports = (env, args) => {
     optimization: {
       minimize: true,
       minimizer: [
+        "...",
         new CssMinimizerPlugin()
       ],
       splitChunks: {
@@ -44,15 +47,11 @@ module.exports = (env, args) => {
         },
         {
           test: /\.(css|scss|sass)/,
-          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+          use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"]
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
-          use: [
-            {
-              loader: "file-loader",
-            },
-          ],
+          type: "asset/resource"
         },
       ]
     },
@@ -74,6 +73,9 @@ module.exports = (env, args) => {
       new BundleAnalyzerPlugin({
         analyzerMode: "server",
         openAnalyzer: true
+      }),
+      new PurgeCSSPlugin({
+        paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true })
       })
     ]
   }
