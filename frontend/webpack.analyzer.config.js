@@ -5,6 +5,7 @@ const Dotenv = require("dotenv-webpack")
 const path = require("path")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 
 module.exports = (env, args) => {
   const config = {
@@ -26,7 +27,6 @@ module.exports = (env, args) => {
     optimization: {
       minimize: true,
       minimizer: [
-        "...",
         new CssMinimizerPlugin()
       ],
       splitChunks: {
@@ -44,11 +44,15 @@ module.exports = (env, args) => {
         },
         {
           test: /\.(css|scss|sass)/,
-          use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"]
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
-          type: "asset/resource"
+          use: [
+            {
+              loader: "file-loader",
+            },
+          ],
         },
       ]
     },
@@ -67,6 +71,10 @@ module.exports = (env, args) => {
           { from: "public/static/images", to: "static/images" },
         ],
       }),
+      new BundleAnalyzerPlugin({
+        analyzerMode: "server",
+        openAnalyzer: true
+      })
     ]
   }
   if (args.mode !== "production") {
