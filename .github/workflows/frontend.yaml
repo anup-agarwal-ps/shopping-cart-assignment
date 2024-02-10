@@ -6,6 +6,9 @@ on:
     paths:
       - "frontend/**"
 
+env:
+  API_URL: ${{secrets.API_URL}}
+
 jobs:
   Test:
     runs-on: ubuntu-latest
