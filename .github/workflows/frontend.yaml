@@ -30,7 +30,7 @@ jobs:
       - name: install dependencies
         run: cd frontend && npm i
       - name: make env file
-        run: echo "API_URL=${{env.API_URL}}" >> .env
+        run: cd frontend && echo "API_URL=${{env.API_URL}}" >> .env
       - name: Build
         run: cd frontend && npm run build
       - name: Upload artifact
