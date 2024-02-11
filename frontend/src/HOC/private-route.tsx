@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react"
-import { useNavigate } from "react-router"
+import { Navigate, useNavigate } from "react-router"
 import { LOGIN_PAGE } from "../constants/routes"
 import { AuthContext } from "../context/auth"
 import { Footer } from "../layout/footer"
@@ -12,14 +12,8 @@ interface Props {
 
 const PrivateRoute: React.FC<Props> = ({ Component }) => {
   const { isUserLoggedIn } = useContext(AuthContext)
-  const navigate = useNavigate()
 
-  useEffect(() => {
-    if (!isUserLoggedIn) {
-      navigate(LOGIN_PAGE)
-    }
-  }, [isUserLoggedIn, navigate])
-  return isUserLoggedIn ? (
+  return isUserLoggedIn === true ? (
     <div className="private-route-container">
       <Header />
       <div className="main-container">
@@ -31,6 +25,8 @@ const PrivateRoute: React.FC<Props> = ({ Component }) => {
         <Footer />
       </div>
     </div>
+  ) : isUserLoggedIn === false ? (
+    <Navigate to={LOGIN_PAGE} />
   ) : null
 }
 

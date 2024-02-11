@@ -1,11 +1,14 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { THEME_COLOR } from "../../constants/colors"
 import { AuthContext } from "../../context/auth"
+import { login } from "../../apis/login"
 
 type Props = {}
 
 const Login = (props: Props) => {
   const { setIsUserLoggedIn } = useContext(AuthContext)
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
   return (
     <div
       style={{
@@ -38,7 +41,12 @@ const Login = (props: Props) => {
           onSubmit={(_) => {
             _.preventDefault()
             _.stopPropagation()
-            setIsUserLoggedIn(true)
+            login(username, password)
+              .then((_) => {
+                localStorage.setItem("token", _)
+                setIsUserLoggedIn(true)
+              })
+              .catch(console.log)
           }}
         >
           <div
@@ -50,7 +58,7 @@ const Login = (props: Props) => {
             }}
           >
             <label aria-label="Email" htmlFor="login-email">
-              Email
+              Username
             </label>
             <input
               id="login-email"
@@ -59,6 +67,8 @@ const Login = (props: Props) => {
                 border: "none",
                 borderBottom: "1px solid #ddd",
               }}
+              onChange={(_) => setUsername(_.target.value)}
+              value={username}
             />
           </div>
           <div
@@ -79,6 +89,9 @@ const Login = (props: Props) => {
                 border: "none",
                 borderBottom: "1px solid #ddd",
               }}
+              type="password"
+              onChange={(_) => setPassword(_.target.value)}
+              value={password}
             />
           </div>
 
@@ -96,7 +109,6 @@ const Login = (props: Props) => {
               border: 0,
             }}
             tabIndex={0}
-            onClick={(_) => setIsUserLoggedIn(true)}
           >
             Login
           </button>

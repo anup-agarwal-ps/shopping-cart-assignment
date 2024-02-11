@@ -63,7 +63,10 @@ export const Header = (props: Props) => {
                 cursor: "pointer",
               }}
               tabIndex={0}
-              onClick={(_) => setIsUserLoggedIn(!isUserLoggedIn)}
+              onClick={(_) => {
+                localStorage.removeItem("token")
+                setIsUserLoggedIn(!isUserLoggedIn)
+              }}
             >
               Logout
             </button>

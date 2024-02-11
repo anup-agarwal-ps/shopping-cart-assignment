@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react"
-import { useNavigate } from "react-router"
-import { HOME_PAGE } from "../constants/routes"
+import { useNavigate, Navigate } from "react-router"
+import { HOME_PAGE, LOGIN_PAGE } from "../constants/routes"
 import { AuthContext } from "../context/auth"
 import { Footer } from "../layout/footer"
 import { Header } from "../layout/header"
@@ -11,15 +11,8 @@ interface Props {
 
 const LoggedOutRoute: React.FC<Props> = ({ Component }) => {
   const { isUserLoggedIn } = useContext(AuthContext)
-  const navigate = useNavigate()
 
-  useEffect(() => {
-    if (isUserLoggedIn) {
-      navigate(HOME_PAGE)
-    }
-  }, [isUserLoggedIn, navigate])
-
-  return !isUserLoggedIn ? (
+  return isUserLoggedIn === false ? (
     <div style={{ position: "relative", height: "100vh" }}>
       <Header />
       <div
@@ -37,6 +30,8 @@ const LoggedOutRoute: React.FC<Props> = ({ Component }) => {
         <Footer />
       </div>
     </div>
+  ) : isUserLoggedIn === true ? (
+    <Navigate to={HOME_PAGE} />
   ) : null
 }
 

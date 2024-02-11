@@ -3,5 +3,5 @@ const { addToCartController } = require("../controller/addToCart")
 const { isUserAuthenticated } = require("../middleware/isUserAuthenticated")
 const addToCartRouter = Router()
 
-addToCartRouter.get("/", isUserAuthenticated, addToCartController.getAddToCart)
+addToCartRouter.post("/", isUserAuthenticated, addToCartController.AddToCart)
 module.exports = { addToCartRouter }

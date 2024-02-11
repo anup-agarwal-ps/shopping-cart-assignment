@@ -14,6 +14,7 @@ import { Loader } from "./components/Loader"
 import PrivateRoute from "./HOC/private-route"
 import { AuthProvider } from "./context/auth"
 import LoggedOutRoute from "./HOC/logged-out-route"
+import ReloadHandler from "./components/ReloadHandler"
 
 const LazyHome = React.lazy(() => import("./views/home"))
 const LazyProducts = React.lazy(() => import("./views/products"))
@@ -24,6 +25,7 @@ const LazyCart = React.lazy(() => import("./views/cart"))
 Axios.defaults.baseURL = process.env.API_URL
 
 Axios.interceptors.request.use((config) => {
+  config.headers.Authorization = localStorage.getItem("token")
   return config
 })
 Axios.interceptors.response.use((config) => {
@@ -36,7 +38,7 @@ function App() {
   )
   const [loading, setLoading] = useState<boolean>(false)
   const [isCartDisplayed, setIsCartDisplayed] = useState<boolean>(false)
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true)
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean | null>(null)
 
   const addCartItem = (product: Product, quantityToBeAdded: number) => {
     let foundIndex = -1
@@ -71,6 +73,7 @@ function App() {
           setIsCartDisplayed,
         }}
       >
+        <ReloadHandler />
         <Router>
           <Suspense fallback={null}>
             {loading && <Loader />}

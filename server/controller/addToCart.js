@@ -1,7 +1,7 @@
-const getAddToCart = (req, res) => {
+const AddToCart = (req, res) => {
   res.send({
     response: "Success",
     responseMessage: "Product added to cart successfully",
   })
 }
-module.exports = { addToCartController: { getAddToCart } }
+module.exports = { addToCartController: { AddToCart } }
