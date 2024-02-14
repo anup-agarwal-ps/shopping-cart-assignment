@@ -7,7 +7,7 @@ type Props = {}
 
 const Login = (props: Props) => {
   const { setIsUserLoggedIn } = useContext(AuthContext)
-  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   return (
     <div
@@ -41,7 +41,7 @@ const Login = (props: Props) => {
           onSubmit={(_) => {
             _.preventDefault()
             _.stopPropagation()
-            login(username, password)
+            login(email, password)
               .then((_) => {
                 localStorage.setItem("token", _)
                 setIsUserLoggedIn(true)
@@ -67,8 +67,8 @@ const Login = (props: Props) => {
                 border: "none",
                 borderBottom: "1px solid #ddd",
               }}
-              onChange={(_) => setUsername(_.target.value)}
-              value={username}
+              onChange={(_) => setEmail(_.target.value)}
+              value={email}
             />
           </div>
           <div

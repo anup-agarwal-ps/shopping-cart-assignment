@@ -32,27 +32,20 @@ const getMe = (req, res) => {
 }
 
 const signup = async (req, res) => {
-  const {
-    first_name,
-    last_name,
-    email,
-    password,
-    confirm_password
-  } = req.body
+  const { first_name, last_name, email, password, confirm_password } = req.body
   if (password !== confirm_password) {
     return res.status(400).send({ msg: "Passwords do not match" })
   }
   const hashedPassword = await bcrypt.hash(password, 10)
-  User.findOne({ email }).then(async user => {
+  User.findOne({ email }).then(async (user) => {
     if (user) {
       res.status(409).send({ msg: "User already exists" })
-    }
-    else {
+    } else {
       const user = new User({
         password: hashedPassword,
         email,
         first_name,
-        last_name
+        last_name,
       })
       await user.save()
       res.send({ msg: "User registered successfully" })
