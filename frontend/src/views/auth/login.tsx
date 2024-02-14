@@ -58,7 +58,7 @@ const Login = (props: Props) => {
             }}
           >
             <label aria-label="Email" htmlFor="login-email">
-              Username
+              Email
             </label>
             <input
               id="login-email"

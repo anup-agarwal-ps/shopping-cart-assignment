@@ -20,8 +20,9 @@ app.use("/categories", categoriesRouter)
 app.use("/products", productsRouter)
 app.use("/addToCart", addToCartRouter)
 
-connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.bsrek4w.mongodb.net/?retryWrites=true&w=majority`).then(_ => {
+connect(
+  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.bsrek4w.mongodb.net/?retryWrites=true&w=majority`
+).then((_) => {
   console.log("Database connected successfully")
   app.listen(port, () => console.log(`Shopping API listening on port ${port}!`))
 })
-
