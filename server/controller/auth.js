@@ -40,7 +40,7 @@ const signup = async (req, res) => {
     confirm_password
   } = req.body
   if (password !== confirm_password) {
-    return res.status.send({ msg: "Passwords do not match" })
+    return res.status(400).send({ msg: "Passwords do not match" })
   }
   const hashedPassword = await bcrypt.hash(password, 10)
   User.findOne({ email }).then(async user => {
