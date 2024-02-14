@@ -38,7 +38,7 @@ const Signup = (props: Props) => {
           onSubmit={(_) => {
             _.preventDefault()
             _.stopPropagation()
-            setIsUserLoggedIn(true)
+            // setIsUserLoggedIn(true)
           }}
         >
           <div
@@ -113,6 +113,7 @@ const Signup = (props: Props) => {
               Password
             </label>
             <input
+              type="password"
               id="signup-password"
               style={{
                 width: "60%",
@@ -136,6 +137,7 @@ const Signup = (props: Props) => {
               Confirm Password
             </label>
             <input
+              type="password"
               id="signup-confirm-password"
               style={{
                 width: "60%",
@@ -158,7 +160,6 @@ const Signup = (props: Props) => {
               border: 0,
             }}
             tabIndex={0}
-            onClick={(_) => setIsUserLoggedIn(true)}
           >
             Signup
           </button>
