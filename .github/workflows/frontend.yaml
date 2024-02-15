@@ -9,6 +9,7 @@ on:
 jobs:
   Test:
     runs-on: ubuntu-latest
+    container: node
     steps:
       - name: Pull code
         uses: actions/checkout@v3
