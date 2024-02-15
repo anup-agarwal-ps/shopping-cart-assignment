@@ -1,11 +1,33 @@
-import { useContext } from "react"
+import { useState } from "react"
 import { THEME_COLOR } from "../../constants/colors"
-import { AuthContext } from "../../context/auth"
+import { signUp } from "../../apis/signup"
+import { useNavigate } from "react-router"
+import { LOGIN_PAGE } from "../../constants/routes"
 
-type Props = {}
-
-const Signup = (props: Props) => {
-  const { setIsUserLoggedIn } = useContext(AuthContext)
+const Signup = () => {
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  })
+  const sendFormDataToApiCall = () => {
+    signUp(formData).then(() => {
+      navigate(LOGIN_PAGE)
+    })
+  }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+  const handleSubmit = () => {
+    if (formData.password === formData.confirm_password) {
+      sendFormDataToApiCall()
+    } else {
+      console.log("password do not match")
+    }
+  }
   return (
     <div
       style={{
@@ -38,7 +60,7 @@ const Signup = (props: Props) => {
           onSubmit={(_) => {
             _.preventDefault()
             _.stopPropagation()
-            // setIsUserLoggedIn(true)
+            handleSubmit()
           }}
         >
           <div
@@ -53,6 +75,10 @@ const Signup = (props: Props) => {
               First Name
             </label>
             <input
+              type="text"
+              name="first_name"
+              value={formData.first_name}
+              onChange={handleChange}
               id="signup-first-name"
               style={{
                 width: "60%",
@@ -73,6 +99,10 @@ const Signup = (props: Props) => {
               Last Name
             </label>
             <input
+              type="text"
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleChange}
               id="signup-last-name"
               style={{
                 width: "60%",
@@ -93,6 +123,10 @@ const Signup = (props: Props) => {
               Email
             </label>
             <input
+              type="text"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               id="signup-email"
               style={{
                 width: "60%",
@@ -114,6 +148,9 @@ const Signup = (props: Props) => {
             </label>
             <input
               type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               id="signup-password"
               style={{
                 width: "60%",
@@ -138,6 +175,9 @@ const Signup = (props: Props) => {
             </label>
             <input
               type="password"
+              name="confirm_password"
+              value={formData.confirm_password}
+              onChange={handleChange}
               id="signup-confirm-password"
               style={{
                 width: "60%",
