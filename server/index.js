@@ -25,4 +25,7 @@ connect(
 ).then((_) => {
   console.log("Database connected successfully")
   app.listen(port, () => console.log(`Shopping API listening on port ${port}!`))
+}).catch(_ => {
+  console.log(_)
+  console.log("Failed to connect to db")
 })

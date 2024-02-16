@@ -21,6 +21,7 @@ jobs:
     environment: Development
     env:
       API_URL: ${{secrets.API_URL}}
+    container: node
     needs: Test
     runs-on: ubuntu-latest
     outputs:
@@ -44,6 +45,7 @@ jobs:
         run: echo 'build_folder_name=bundle' >> $GITHUB_OUTPUT
   Deploy:
     needs: Build
+    container: node
     runs-on: ubuntu-latest
     steps:
       - name: Get build artifacts
