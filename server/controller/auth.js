@@ -2,15 +2,24 @@ const secretKey = process.env.SECRET_KEY
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const User = require("../model/user")
+const { getRedisClient } = require("../connection/redis")
 
 const login = async (req, res) => {
   const { email, password } = req.body
   const user = await User.findOne({ email }).lean()
-  const isPasswordCorrect = await bcrypt.compare(password, user.password)
+  const isPasswordCorrect = bcrypt.compare(password, user.password)
   if (isPasswordCorrect) {
     const userDetails = { ...user, password: undefined }
+    const client = await getRedisClient()
+    const token = jwt.sign({ ...userDetails }, secretKey)
+    client.set(
+      token,
+      JSON.stringify({ ...userDetails, token }),
+      { EX: 60 * 60 },
+      console.log
+    )
     res.send({
-      token: jwt.sign({ ...userDetails }, secretKey),
+      token,
     })
   } else {
     res.status(401).send({
@@ -19,14 +28,30 @@ const login = async (req, res) => {
   }
 }
 
-const getMe = (req, res) => {
+const getMe = async (req, res) => {
   const token = req.headers.authorization
   try {
-    jwt.verify(token, secretKey)
-    res.status(200).send(jwt.decode(token))
+    const client = await getRedisClient()
+    const data = await client.get(token)
+    if (!data) throw Error("Invalid token")
+    res.status(200).send(JSON.parse(data))
   } catch (error) {
     res.status(401).send({
       message: "invalid token",
+    })
+  }
+}
+
+const logout = async (req, res) => {
+  const token = req.headers.authorization
+  const client = await getRedisClient()
+  try {
+    await client.expire(token, 0)
+    res.send({ msg: "User logged out" })
+  } catch (error) {
+    console.log(error)
+    res.status(401).send({
+      message: "Something went wrong",
     })
   }
 }
@@ -53,4 +78,4 @@ const signup = async (req, res) => {
   })
 }
 
-module.exports = { login, getMe, signup }
+module.exports = { login, getMe, signup, logout }
