@@ -9,6 +9,7 @@ import { CartContext } from "../../context/cart"
 import { AuthContext } from "../../context/auth"
 import { useLocation } from "react-router"
 import { Link } from "react-router-dom"
+import { logout } from "../../apis/logout"
 
 type Props = {}
 
@@ -23,7 +24,12 @@ export const Header = (props: Props) => {
     if (window.innerWidth < 701) setImgSrc("/static/images/logo.png")
     else setImgSrc("/static/images/logo_2x.png")
   }, [])
-
+  const handleLogoutButton = () => {
+    logout().then(() => {
+      setIsUserLoggedIn(false)
+      localStorage.removeItem("token")
+    })
+  }
   return (
     <header className="header">
       <div className="header-content">
@@ -64,8 +70,7 @@ export const Header = (props: Props) => {
               }}
               tabIndex={0}
               onClick={(_) => {
-                localStorage.removeItem("token")
-                setIsUserLoggedIn(!isUserLoggedIn)
+                handleLogoutButton()
               }}
             >
               Logout
