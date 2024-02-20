@@ -25,10 +25,12 @@ export const Header = (props: Props) => {
     else setImgSrc("/static/images/logo_2x.png")
   }, [])
   const handleLogoutButton = () => {
-    logout().then(() => {
-      setIsUserLoggedIn(false)
-      localStorage.removeItem("token")
-    })
+    logout()
+      .then(() => {
+        setIsUserLoggedIn(false)
+        localStorage.removeItem("token")
+      })
+      .catch(console.log)
   }
   return (
     <header className="header">
