@@ -7,6 +7,11 @@ const { getRedisClient } = require("../connection/redis")
 const login = async (req, res) => {
   const { email, password } = req.body
   const user = await User.findOne({ email }).lean()
+  if (!user) {
+    return res.status(401).send({
+      message: "invalid credentials",
+    })
+  }
   const isPasswordCorrect = bcrypt.compare(password, user.password)
   if (isPasswordCorrect) {
     const userDetails = { ...user, password: undefined }
