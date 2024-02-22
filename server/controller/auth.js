@@ -51,7 +51,7 @@ const logout = async (req, res) => {
   const token = req.headers.authorization
   const client = await getRedisClient()
   try {
-    await client.expire(token, 0)
+    await client.del(token)
     res.send({ msg: "User logged out" })
   } catch (error) {
     console.log(error)
