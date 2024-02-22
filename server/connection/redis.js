@@ -1,7 +1,8 @@
 const { createClient } = require("redis")
+const { REDIS_URL } = require("../config/credentials")
 
 let client = createClient({
-  url: process.env.REDIS_URL,
+  url: REDIS_URL,
 })
   .on("error", (err) => console.log("Redis Client Error", err))
   .connect()

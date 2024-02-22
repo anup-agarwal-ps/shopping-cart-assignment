@@ -9,8 +9,8 @@ const { productsRouter } = require("./handler/products")
 const { addToCartRouter } = require("./handler/addToCart")
 const { connectToDatabase } = require("./connection/mongo")
 const { getRedisClient } = require("./connection/redis")
+const { PORT } = require("./config/credentials")
 const app = express()
-const port = process.env.PORT
 app.use(cors())
 app.use(bodyParser.json())
 
@@ -25,8 +25,8 @@ const bootstrap = async () => {
     await Promise.all([connectToDatabase(), getRedisClient()])
     console.log("Database connected successfully")
     console.log("Connected to redis successfully")
-    app.listen(port, () =>
-      console.log(`Shopping API listening on port ${port}!`)
+    app.listen(PORT, () =>
+      console.log(`Shopping API listening on port ${PORT}!`)
     )
   } catch (error) {
     console.log(error)

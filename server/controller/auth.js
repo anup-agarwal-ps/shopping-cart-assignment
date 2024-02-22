@@ -1,8 +1,8 @@
-const secretKey = process.env.SECRET_KEY
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const User = require("../model/user")
 const { getRedisClient } = require("../connection/redis")
+const { SECRET_KEY } = require("../config/credentials")
 
 const login = async (req, res) => {
   const { email, password } = req.body
@@ -16,7 +16,7 @@ const login = async (req, res) => {
   if (isPasswordCorrect) {
     const userDetails = { ...user, password: undefined }
     const client = await getRedisClient()
-    const token = jwt.sign({ ...userDetails }, secretKey)
+    const token = jwt.sign({ ...userDetails }, SECRET_KEY)
     client.set(
       token,
       JSON.stringify({ ...userDetails, token }),
