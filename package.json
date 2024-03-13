@@ -10,6 +10,13 @@
     "format": "prettier --write ./server/",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run format",
+      "cd frontend && npm run format",
+      "git add -A ."
+    ]
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -25,7 +32,7 @@
   },
   "devDependencies": {
     "eslint": "^8.31.0",
-    "husky": "^8.0.3",
+    "husky": "^9.0.11",
     "nodemon": "^3.0.3",
     "prettier": "^2.8.8"
   }

@@ -23,8 +23,8 @@ app.use("/addToCart", addToCartRouter)
 const bootstrap = async () => {
   try {
     await Promise.all([connectToDatabase(), getRedisClient()])
-    console.log("Database connected successfully")
-    console.log("Connected to redis successfully")
+    console.log("Database connected successfully.")
+    console.log("Connected to redis successfully.")
     app.listen(PORT, () =>
       console.log(`Shopping API listening on port ${PORT}!`)
     )

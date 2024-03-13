@@ -1,8 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# npm run format
-# cd frontend 
-# npm run format 
-# cd ..
-# git add -u .
+npx lint-staged
