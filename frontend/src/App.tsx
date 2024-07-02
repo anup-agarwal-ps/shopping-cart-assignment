@@ -22,7 +22,7 @@ const LazyLogin = React.lazy(() => import("./views/auth/login"))
 const LazyRegister = React.lazy(() => import("./views/auth/signup"))
 const LazyCart = React.lazy(() => import("./views/cart"))
 
-Axios.defaults.baseURL = process.env.API_URL
+Axios.defaults.baseURL = process.env.API_URL || ""
 
 Axios.interceptors.request.use((config) => {
   config.headers.Authorization = localStorage.getItem("token")

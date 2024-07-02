@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[343],{343:(e,t,a)=>{a.r(t),a.d(t,{default:()=>r});var n=a(893);const r=function(e){var t=e.description,a=e.imageURL,r=e.alt;return(0,n.jsx)("img",{alt:r,title:t,src:a,className:"product-image"})}}}]);

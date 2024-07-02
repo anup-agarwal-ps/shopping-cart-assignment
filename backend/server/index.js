@@ -14,6 +14,8 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
+app.use(express.static("build"))
+
 app.use("/banners", bannerRouter)
 app.use("/auth", authRouter)
 app.use("/categories", categoriesRouter)
