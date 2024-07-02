@@ -1,39 +1,30 @@
 {
-  "name": "code-exercise",
+  "name": "sapient-assignment",
   "version": "1.0.0",
-  "description": "This is a shopping cart coding exercise",
+  "description": "This is the base folder for the shopping cart exercise. You will have all the static assets and mock server responses available in this repo.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js",
-    "format": "prettier --write ./server/",
     "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "npm run format",
       "cd frontend && npm run format",
-      "git add -A ."
+      "cd backend && npm run format"
     ]
   },
-  "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.2",
-    "canned": "^0.3.12",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.1",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.1.2",
-    "redis": "^4.6.13"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-ps:anup-agarwal-ps/shopping-cart-assignment.git"
   },
-  "devDependencies": {
-    "eslint": "^8.31.0",
-    "husky": "^9.0.11",
-    "nodemon": "^3.0.3",
-    "prettier": "^2.8.8"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "frontend",
+      "backend"
+    ]
   }
 }
