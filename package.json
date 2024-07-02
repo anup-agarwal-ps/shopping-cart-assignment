@@ -4,7 +4,7 @@
   "description": "This is the base folder for the shopping cart exercise. You will have all the static assets and mock server responses available in this repo.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd ./backend && npm start",
     "prepare": "husky install"
   },
   "lint-staged": {
