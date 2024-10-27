@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[858],{858:(n,e,a)=>{a.r(e),a.d(e,{default:()=>s});var r=a(893);const s=function(n){var e=n.bannerImageAlt,a=n.bannerImageUrl;return(0,r.jsx)("img",{src:a,alt:e,className:"banner-img"})}}}]);
