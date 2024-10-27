@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode=production",
-    "start": "webpack serve --mode=development",
+    "build": "webpack -c webpack.config.prod.js",
+    "start": "webpack serve",
     "format": "prettier --write ./src/",
     "lint": "eslint ./src/ --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test-coverage": "jest --coverage --watchAll=false",
-    "analyze": "webpack -c webpack.analyzer.config.js --mode=production"
+    "analyze": "webpack -c webpack.config.analyzer.js "
   },
   "keywords": [],
   "author": "",

@@ -1,81 +1,57 @@
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const parsedEnvObj = require("dotenv").config("./.env").parsed
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const Dotenv = require("dotenv-webpack")
 const path = require("path")
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
-const { PurgeCSSPlugin } = require("purgecss-webpack-plugin")
-const glob = require("glob")
+const { DefinePlugin } = require("webpack")
 
-module.exports = (env, args) => {
-  const config = {
-    entry: "./src/index",
-    output: {
-      path: path.join(__dirname, "build"),
-      filename: "[name].js",
-    },
-    devServer: {
-      port: 3000,
-      historyApiFallback: true,
-      open: true,
-      hot: true,
-      liveReload: false,
-      client: {
-        overlay: false
+
+module.exports = {
+  entry: path.join(__dirname, "src", "index"),
+  devtool: "eval",
+  devServer: {
+    open: true,
+    historyApiFallback: true,
+    port: 3000,
+    hot: true,
+    liveReload: false,
+    client: {
+      overlay: false,
+    }
+  },
+  mode: "development",
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx|tsx|ts)/,
+        exclude: /node_modules/,
+        use: "babel-loader"
+      },
+      {
+        test: /\.(css|scss|sass)/,
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: "asset/resource"
+      },
+      {
+        test: /\.(woff|ttf|ttf2)$/,
+        type: "asset/resource"
       }
-    },
-    optimization: {
-      minimize: true,
-      minimizer: [
-        "...",
-        new CssMinimizerPlugin()
-      ],
-      splitChunks: {
-        chunks: "all",
-        maxSize: 140000,
-        minSize: 50000,
-      }
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(js|jsx|tsx|ts)/,
-          exclude: /node_modules/,
-          use: "babel-loader"
-        },
-        {
-          test: /\.(css|scss|sass)/,
-          use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"]
-        },
-        {
-          test: /\.(png|jpe?g|gif)$/i,
-          type: "asset/resource"
-        },
-      ]
-    },
-    resolve: {
-      extensions: [".ts", ".tsx", ".js", ".jsx"]
-    },
-    plugins: [
-      new HtmlWebpackPlugin({ template: "./index.html" }),
-      new CleanWebpackPlugin(),
-      new MiniCssExtractPlugin(),
-      new Dotenv({
-        path: path.join(__dirname, ".env"),
-      }),
-      new CopyWebpackPlugin({
-        patterns: [
-          { from: "public/static/images", to: "static/images" },
-        ],
-      }),
-      new PurgeCSSPlugin({
-        paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, { nodir: true })
-      })
     ]
-  }
-  if (args.mode !== "production") {
-    config.devtool = "eval"
-  }
-  return config;
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx"]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({ template: "./index.html" }),
+    new DefinePlugin({
+      "process": JSON.stringify({ env: parsedEnvObj })
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "public/static/images", to: "static/images" },
+      ],
+    })
+  ]
 }

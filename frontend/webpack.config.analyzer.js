@@ -9,13 +9,14 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 const { PurgeCSSPlugin } = require("purgecss-webpack-plugin")
 const glob = require("glob")
 
-module.exports = (env, args) => {
+module.exports = () => {
   const config = {
     entry: "./src/index",
     output: {
       path: path.join(__dirname, "build"),
       filename: "[name].js",
     },
+    mode: "production",
     devServer: {
       port: 3000,
       historyApiFallback: true,
@@ -79,8 +80,6 @@ module.exports = (env, args) => {
       })
     ]
   }
-  if (args.mode !== "production") {
-    config.devtool = "eval"
-  }
+
   return config;
 }
