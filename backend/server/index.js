@@ -9,6 +9,7 @@ const { productsRouter } = require("./handler/products")
 const { addToCartRouter } = require("./handler/addToCart")
 const { connectToDatabase } = require("./connection/mongo")
 const { getRedisClient } = require("./connection/redis")
+const serverlessHttp = require("serverless-http")
 const { PORT } = require("./config/credentials")
 const app = express()
 app.use(cors())
@@ -35,4 +36,4 @@ const bootstrap = async () => {
   }
 }
 
-bootstrap()
+module.exports = { app: serverlessHttp(bootstrap()) }
