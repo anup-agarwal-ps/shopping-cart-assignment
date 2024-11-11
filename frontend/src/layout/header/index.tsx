@@ -4,12 +4,12 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 import { useNavigate } from "react-router"
 import { HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE } from "../../constants/routes"
 import { THEME_COLOR } from "../../constants/colors"
-import "./index.scss"
 import { CartContext } from "../../context/cart"
 import { AuthContext } from "../../context/auth"
 import { useLocation } from "react-router"
 import { Link } from "react-router-dom"
 import { logout } from "../../apis/logout"
+import "./index.scss"
 
 type Props = {}
 
