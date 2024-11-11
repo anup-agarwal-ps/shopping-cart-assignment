@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-cd frontend && npm run format
-cd ../backend && npm run format
-cd ../frontend && npm run build && cp -r ./build/ ../build
-cd ..
-git add -A .

@@ -13,6 +13,7 @@
     "test-coverage": "jest --coverage --watchAll=false",
     "analyze": "webpack -c webpack.config.analyzer.js "
   },
+  "sideEffects": false,
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -24,6 +24,7 @@ module.exports = {
     ],
     splitChunks: {
       chunks: "all",
+      maxSize: 24
     }
   },
   mode: "production",
