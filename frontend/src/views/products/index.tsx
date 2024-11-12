@@ -5,7 +5,6 @@ import { ProductCard } from "../../components/product-card"
 import { GREY_COLOR } from "../../constants/colors"
 import { CartContext } from "../../context/cart"
 import { Sidebar } from "../../layout/sidebar"
-import "./index.scss"
 
 type Props = {}
 

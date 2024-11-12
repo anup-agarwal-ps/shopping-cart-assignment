@@ -4,7 +4,6 @@ import { LOGIN_PAGE } from "../constants/routes"
 import { AuthContext } from "../context/auth"
 import { Footer } from "../layout/footer"
 import { Header } from "../layout/header"
-import "./private-route.scss"
 
 interface Props {
   Component: React.FC

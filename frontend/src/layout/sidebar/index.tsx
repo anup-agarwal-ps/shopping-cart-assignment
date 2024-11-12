@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { Category, getCategories } from "../../apis/category"
 import { GREY_COLOR } from "../../constants/colors"
-import "./index.scss"
 
 interface Props {
   selectCategoryHandler: (categoryId: string | null) => void

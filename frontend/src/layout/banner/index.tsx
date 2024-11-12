@@ -1,6 +1,5 @@
 import { lazy, ReactNode, useEffect, useState } from "react"
 import { Banner, getBanners } from "../../apis/banner"
-import "./index.scss"
 
 const LazyBannerImage = lazy(() => import("./banner-image"))
 

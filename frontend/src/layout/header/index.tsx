@@ -9,7 +9,6 @@ import { AuthContext } from "../../context/auth"
 import { useLocation } from "react-router"
 import { Link } from "react-router-dom"
 import { logout } from "../../apis/logout"
-import "./index.scss"
 
 export const Header = () => {
   const [imgSrc, setImgSrc] = useState("")

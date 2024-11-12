@@ -2,7 +2,6 @@ import { lazy, ReactNode, useContext, useEffect, useState } from "react"
 import { Category as ICategory, getCategories } from "../../apis/category"
 import { CartContext } from "../../context/cart"
 import { Category } from "./category"
-import "./index.scss"
 
 const LazyBanners = lazy(() => import("../../layout/banner"))
 

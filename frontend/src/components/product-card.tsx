@@ -3,7 +3,6 @@ import { addToCart } from "../apis/add-to-cart"
 import { Product } from "../apis/product"
 import { GREY_COLOR, THEME_COLOR } from "../constants/colors"
 import { CartContext } from "../context/cart"
-import "./product-card.scss"
 
 type Props = {
   product: Product

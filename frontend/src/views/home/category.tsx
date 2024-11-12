@@ -4,7 +4,6 @@ import { Category as ICategory } from "../../apis/category"
 import { THEME_COLOR } from "../../constants/colors"
 import { PRODUCTS_PAGE } from "../../constants/routes"
 import CategoryImage from "./category-image"
-import "./category.scss"
 
 interface Props {
   category: ICategory
