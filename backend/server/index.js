@@ -7,8 +7,6 @@ const { authRouter } = require("./handler/auth")
 const { categoriesRouter } = require("./handler/categories")
 const { productsRouter } = require("./handler/products")
 const { addToCartRouter } = require("./handler/addToCart")
-const { connectToDatabase } = require("./connection/mongo")
-const { getRedisClient } = require("./connection/redis")
 const serverlessHttp = require("serverless-http")
 const { PORT } = require("./config/credentials")
 const app = express()
@@ -23,17 +21,16 @@ app.use("/categories", categoriesRouter)
 app.use("/products", productsRouter)
 app.use("/addToCart", addToCartRouter)
 
-const bootstrap = async () => {
+if (process.env.IS_SLS === "Yes") {
+  module.exports = { app: serverlessHttp(bootstrap()) }
+}
+else {
   try {
-    await Promise.all([connectToDatabase(), getRedisClient()])
-    console.log("Database connected successfully.")
-    console.log("Connected to redis successfully.")
     app.listen(PORT, () =>
       console.log(`Shopping API listening on port ${PORT}!`)
     )
   } catch (error) {
     console.log(error)
   }
-}
 
-module.exports = { app: serverlessHttp(bootstrap()) }
+}

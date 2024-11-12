@@ -4,10 +4,4 @@ PORT=5000
 # for auth
 SECRET_KEY=secret-key
 
-# mongo
-DB_PASSWORD=password 
-
-# mongo
-DB_USERNAME=shopping 
-
-REDIS_URL=redis_url
+IS_SLS=Yes

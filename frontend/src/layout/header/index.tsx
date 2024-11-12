@@ -11,9 +11,7 @@ import { Link } from "react-router-dom"
 import { logout } from "../../apis/logout"
 import "./index.scss"
 
-type Props = {}
-
-export const Header = (props: Props) => {
+export const Header = () => {
   const [imgSrc, setImgSrc] = useState("")
   const navigate = useNavigate()
   const { setIsCartDisplayed } = useContext(CartContext)
