@@ -4,7 +4,7 @@
   "description": "This is a shopping cart coding exercise",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy-sls": "sls deploy",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
     "format": "prettier --write ./server/"
@@ -12,7 +12,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "canned": "^0.3.12",
     "cors": "^2.8.5",

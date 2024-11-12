@@ -2,27 +2,19 @@ require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const bodyParser = require("body-parser")
-const { bannerRouter } = require("./handler/banner")
-const { authRouter } = require("./handler/auth")
-const { categoriesRouter } = require("./handler/categories")
-const { productsRouter } = require("./handler/products")
-const { addToCartRouter } = require("./handler/addToCart")
 const serverlessHttp = require("serverless-http")
 const { PORT } = require("./config/credentials")
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
+const { Router } = require("./router")
 
 app.use(express.static("build"))
 
-app.use("/banners", bannerRouter)
-app.use("/auth", authRouter)
-app.use("/categories", categoriesRouter)
-app.use("/products", productsRouter)
-app.use("/addToCart", addToCartRouter)
+app.use("/api", Router)
 
 if (process.env.IS_SLS === "Yes") {
-  module.exports = { app: serverlessHttp(bootstrap()) }
+  module.exports = { app: serverlessHttp(app) }
 }
 else {
   try {
@@ -32,5 +24,4 @@ else {
   } catch (error) {
     console.log(error)
   }
-
 }

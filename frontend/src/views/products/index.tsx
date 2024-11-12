@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react"
-// import { Category } from "../../apis/category"
 import { getProducts, Product } from "../../apis/product"
 import { ProductCard } from "../../components/product-card"
 import { GREY_COLOR } from "../../constants/colors"

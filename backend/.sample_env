@@ -4,4 +4,4 @@ PORT=5000
 # for auth
 SECRET_KEY=secret-key
 
-IS_SLS=Yes
+IS_SLS=Yes or No
