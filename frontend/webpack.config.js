@@ -1,52 +1,42 @@
-const parsedEnvObj = require("dotenv").config("./.env").parsed
+const env = require("dotenv").config().parsed
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const path = require("path")
-const CopyWebpackPlugin = require("copy-webpack-plugin")
 const { DefinePlugin } = require("webpack")
-
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-  entry: path.join(__dirname, "src", "index"),
-  devtool: "eval",
+  entry: "./src/index.tsx",
+  output: {
+    filename: "bundle.[contenthash].js",
+    path: path.join(__dirname, "dist")
+  },
   devServer: {
+    port: 3000,
+    liveReload: false,
+    hot: true,
     open: true,
     historyApiFallback: true,
-    port: 3000,
-    hot: true,
-    liveReload: false,
-    client: {
-      overlay: false,
-    }
   },
-  mode: "development",
+  devtool: "eval",
   module: {
     rules: [
       {
-        test: /\.(js|jsx|tsx|ts)/,
-        exclude: /node_modules/,
+        test: /\.(js|jsx|ts|tsx)$/,
         use: "babel-loader"
       },
       {
-        test: /\.(css|scss|sass)/,
-        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        type: "asset/resource"
-      },
-      {
-        test: /\.(woff|ttf|ttf2)$/,
-        type: "asset/resource"
+        test: /\.(css)$/,
+        use: ["style-loader", "css-loader", "postcss-loader"]
       }
     ]
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"]
+    extensions: [".js", ".jsx", ".ts", ".tsx"]
   },
   plugins: [
     new HtmlWebpackPlugin({ template: "./index.html" }),
     new DefinePlugin({
-      "process": JSON.stringify({ env: parsedEnvObj })
+      "process": JSON.stringify({ env })
     }),
     new CopyWebpackPlugin({
       patterns: [

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useContext, useEffect, useState } from "react"
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from "react-router"
 import { HOME_PAGE, LOGIN_PAGE, REGISTER_PAGE } from "../../constants/routes"
 import { THEME_COLOR } from "../../constants/colors"
@@ -32,7 +32,7 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="header-content">
-        <h1 id="sabka-bazaar-logo" style={{ display: "none" }}>
+        <h1 id="sabka-bazaar-logo" className="hidden bg-black">
           Sabka Bazaar
         </h1>
         <Link to={HOME_PAGE}>
@@ -54,7 +54,7 @@ export const Header = () => {
           >
             <FontAwesomeIcon
               color={THEME_COLOR}
-              icon={solid("shopping-cart")}
+              icon={faShoppingCart}
               size="2xl"
             />
           </button>
