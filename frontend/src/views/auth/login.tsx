@@ -9,105 +9,55 @@ const Login = (props: Props) => {
   const { setIsUserLoggedIn } = useContext(AuthContext)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-around",
-        width: "80%",
-        margin: "auto",
-        alignItems: "flex-start",
-        paddingTop: "50px",
-        paddingBottom: "50px",
-      }}
-    >
-      <div
-        style={{
-          flexBasis: "40%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+    <div className="flex justify-around w-[80%] mx-auto items-start pt-12 pb-12">
+      <div className="flex-[0_0_40%] flex justify-center items-center">
         <div>
-          <h1>Login</h1>
-          <p style={{ paddingTop: "25px" }}>
+          <h1 className="text-2xl font-bold">Login</h1>
+          <p className="pt-6">
             Get access to your Orders, Wishlist and Recommendations
           </p>
         </div>
       </div>
-      <div style={{ flexBasis: "60%" }}>
+      <div className="flex-[0_0_60%]">
         <form
-          onSubmit={(_) => {
-            _.preventDefault()
-            _.stopPropagation()
+          onSubmit={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
             login(email, password)
-              .then((_) => {
-                localStorage.setItem("token", _)
+              .then((token) => {
+                localStorage.setItem("token", token)
                 setIsUserLoggedIn(true)
               })
               .catch(console.log)
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: 5,
-              marginBottom: 10,
-            }}
-          >
-            <label aria-label="Email" htmlFor="login-email">
+          <div className="flex flex-col gap-1.5 mb-2.5">
+            <label htmlFor="login-email" aria-label="Email">
               Email
             </label>
             <input
               id="login-email"
-              style={{
-                width: "60%",
-                border: "none",
-                borderBottom: "1px solid #ddd",
-              }}
-              onChange={(_) => setEmail(_.target.value)}
+              className="w-[60%] border-none border-b border-gray-300 focus:outline-none"
+              onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: 5,
-              marginBottom: 10,
-            }}
-          >
-            <label aria-label="Password" htmlFor="login-password">
+          <div className="flex flex-col gap-1.5 mb-2.5">
+            <label htmlFor="login-password" aria-label="Password">
               Password
             </label>
             <input
               id="login-password"
-              style={{
-                width: "60%",
-                border: "none",
-                borderBottom: "1px solid #ddd",
-              }}
               type="password"
-              onChange={(_) => setPassword(_.target.value)}
+              className="w-[60%] border-none border-b border-gray-300 focus:outline-none"
+              onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
           </div>
-
           <button
-            style={{
-              width: "60%",
-              color: "white",
-              backgroundColor: THEME_COLOR,
-              marginTop: "20px",
-              padding: "10px",
-              cursor: "pointer",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              border: 0,
-            }}
+            className="w-[60%] text-white bg-[THEME_COLOR] mt-5 p-2.5 cursor-pointer flex justify-center items-center border-none focus:outline-none"
             tabIndex={0}
           >
             Login

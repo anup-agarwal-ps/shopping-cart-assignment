@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react"
-import { Navigate, useNavigate } from "react-router"
+import React, { useContext } from "react"
+import { Navigate } from "react-router"
 import { LOGIN_PAGE } from "../constants/routes"
 import { AuthContext } from "../context/auth"
 import { Footer } from "../layout/footer"
@@ -13,9 +13,9 @@ const PrivateRoute: React.FC<Props> = ({ Component }) => {
   const { isUserLoggedIn } = useContext(AuthContext)
 
   return isUserLoggedIn === true ? (
-    <div className="private-route-container">
+    <div className="relative bg-white">
       <Header />
-      <div className="main-container">
+      <div className="w-[90%] mx-auto pt-[100px] sm:w-full sm:pt-[80px]">
         <main>
           <Component />
         </main>

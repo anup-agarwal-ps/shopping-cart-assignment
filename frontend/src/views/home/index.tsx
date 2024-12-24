@@ -27,6 +27,7 @@ const Products: React.FC<Props> = () => {
           ),
         )
       } catch (error) {
+        console.log(error)
       } finally {
         setLoading(false)
       }
@@ -37,7 +38,7 @@ const Products: React.FC<Props> = () => {
   return (
     <>
       {BannerComponent}
-      <ul className="categories-container">
+      <ul className="w-full flex items-center justify-between pl-7">
         {categories
           .filter(({ enabled }) => enabled)
           .map((category, index) => (

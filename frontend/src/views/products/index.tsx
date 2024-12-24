@@ -21,6 +21,7 @@ const Products: React.FC<Props> = () => {
         setProducts(data)
         setFilteredProducts(data)
       } catch (error) {
+        console.error(error)
       } finally {
         setLoading(false)
       }
@@ -33,17 +34,19 @@ const Products: React.FC<Props> = () => {
       setFilteredProducts(
         products.filter((product) => product.category === selectedCategory),
       )
-    } else setFilteredProducts(products)
+    } else {
+      setFilteredProducts(products)
+    }
   }, [selectedCategory, products])
 
   return (
-    <div style={{ backgroundColor: GREY_COLOR }}>
-      <main className="products-container">
+    <div className="bg-[GREY_COLOR]">
+      <main className="flex items-start justify-between">
         <Sidebar
           selectCategoryHandler={setSelectedCategory}
           selectedCategory={selectedCategory}
         />
-        <ul className="product-list">
+        <ul className="bg-white w-full flex flex-wrap items-center content-start box-border p-4 pt-0 min-h-screen">
           {filteredProducts.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))}

@@ -25,31 +25,28 @@ export const Sidebar: React.FC<Props> = ({
 
   return (
     <aside
-      className="sidebar"
-      style={{
-        backgroundColor: GREY_COLOR,
-        minHeight: window.innerHeight,
-      }}
+      className={`flex-[0_0_18%] border border-gray-300 p-0 pb-5 bg-[${GREY_COLOR}] min-h-[${window.innerHeight}px] 
+        max-[1180px]:flex-[0_0_30%] max-[800px]:hidden`}
     >
       <ul>
         {categories
           .filter((category) => category.enabled === true)
           .map((category) => (
             <li
-              className="sidebar-list-item"
-              style={{
-                backgroundColor:
-                  category.id === selectedCategory ? "white" : "transparent",
-              }}
-              onClick={(_) => _.stopPropagation()}
+              className={`list-none border-b border-gray-300 cursor-pointer ${
+                category.id === selectedCategory ? "bg-white" : "bg-transparent"
+              }`}
+              onClick={(e) => e.stopPropagation()}
+              key={category.id}
             >
               <button
                 tabIndex={0}
-                onClick={(_) => {
+                className="w-full h-full p-[10px_0_10px_10px] text-left border-none cursor-pointer bg-transparent"
+                onClick={() =>
                   selectCategoryHandler(
                     category.id === selectedCategory ? null : category.id,
                   )
-                }}
+                }
               >
                 {category.name}
               </button>

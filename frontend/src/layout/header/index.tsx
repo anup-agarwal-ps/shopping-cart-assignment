@@ -32,8 +32,8 @@ export const Header = () => {
   }
   
   return (
-    <header className="header">
-      <div className="header-content">
+    <header className="w-full min-h-[40px] max-h-[80px] border-b border-gray-300 fixed flex items-center bg-white z-[100] max-[1180px]:h-[7%]">
+      <div className="w-[90%] mx-auto flex justify-between items-center">
         <h1 id="sabka-bazaar-logo" className="hidden bg-black">
           Sabka Bazaar
         </h1>
@@ -41,18 +41,16 @@ export const Header = () => {
           <img
             role="button"
             tabIndex={0}
-            className="logo"
+            className="max-h-[80px] py-[15px] cursor-pointer"
             src={imgSrc}
             aria-labelledby="sabka-bazaar-logo"
             alt=""
           />
         </Link>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div className="flex items-center">
           <button
-            className="cart"
-            onClick={(_) => {
-              setIsCartDisplayed(true)
-            }}
+            className="cursor-pointer h-[40px] flex items-center bg-transparent border-none"
+            onClick={() => setIsCartDisplayed(true)}
           >
             <FontAwesomeIcon
               color={THEME_COLOR}
@@ -62,31 +60,17 @@ export const Header = () => {
           </button>
           {isUserLoggedIn ? (
             <button
-              style={{
-                color: THEME_COLOR,
-                margin: "0 20px",
-                backgroundColor: "transparent",
-                border: "0",
-                cursor: "pointer",
-              }}
+              className="text-[THEME_COLOR] mx-[20px] bg-transparent border-none cursor-pointer"
               tabIndex={0}
-              onClick={(_) => {
-                handleLogoutButton()
-              }}
+              onClick={() => handleLogoutButton()}
             >
               Logout
             </button>
           ) : (
             <button
-              style={{
-                color: THEME_COLOR,
-                backgroundColor: "transparent",
-                border: "0",
-                margin: "0 20px",
-                cursor: "pointer",
-              }}
+              className="text-[THEME_COLOR] bg-transparent border-none mx-[20px] cursor-pointer"
               tabIndex={0}
-              onClick={(_) =>
+              onClick={() =>
                 navigate(
                   location.pathname === LOGIN_PAGE ? REGISTER_PAGE : LOGIN_PAGE,
                 )

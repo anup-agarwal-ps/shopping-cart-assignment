@@ -25,180 +25,53 @@ const Signup = () => {
     if (formData.password === formData.confirm_password) {
       sendFormDataToApiCall()
     } else {
-      console.log("password do not match")
+      console.log("Passwords do not match")
     }
   }
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-around",
-        width: "80%",
-        margin: "auto",
-        alignItems: "flex-start",
-        paddingTop: "50px",
-        paddingBottom: "50px",
-      }}
-    >
-      <div
-        style={{
-          flexBasis: "40%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+    <div className="flex justify-around w-[80%] mx-auto items-start pt-12 pb-12">
+      <div className="flex-[0_0_40%] flex justify-center items-center">
         <div>
-          <h1>Signup</h1>
-          <p style={{ paddingTop: "25px" }}>
-            We do not share personal details with anyone.
-          </p>
+          <h1 className="text-2xl font-bold">Signup</h1>
+          <p className="pt-6">We do not share personal details with anyone.</p>
         </div>
       </div>
-      <div style={{ flexBasis: "60%" }}>
+      <div className="flex-[0_0_60%]">
         <form
-          onSubmit={(_) => {
-            _.preventDefault()
-            _.stopPropagation()
+          onSubmit={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
             handleSubmit()
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: 5,
-              marginBottom: 10,
-            }}
-          >
-            <label htmlFor="signup-first-name" aria-label="First Name">
-              First Name
-            </label>
-            <input
-              type="text"
-              name="first_name"
-              value={formData.first_name}
-              onChange={handleChange}
-              id="signup-first-name"
-              style={{
-                width: "60%",
-                border: "none",
-                borderBottom: "1px solid #ddd",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: 5,
-              marginBottom: 10,
-            }}
-          >
-            <label htmlFor="signup-last-name" aria-label="Last Name">
-              Last Name
-            </label>
-            <input
-              type="text"
-              name="last_name"
-              value={formData.last_name}
-              onChange={handleChange}
-              id="signup-last-name"
-              style={{
-                width: "60%",
-                border: "none",
-                borderBottom: "1px solid #ddd",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: 5,
-              marginBottom: 10,
-            }}
-          >
-            <label htmlFor="signup-email" aria-label="Email">
-              Email
-            </label>
-            <input
-              type="text"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              id="signup-email"
-              style={{
-                width: "60%",
-                border: "none",
-                borderBottom: "1px solid #ddd",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: 5,
-              marginBottom: 10,
-            }}
-          >
-            <label htmlFor="signup-password" aria-label="Password">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              id="signup-password"
-              style={{
-                width: "60%",
-                border: "none",
-                borderBottom: "1px solid #ddd",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              rowGap: 5,
-              marginBottom: 10,
-            }}
-          >
-            <label
-              htmlFor="signup-confirm-password"
-              aria-label="Confirm Password"
-            >
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              name="confirm_password"
-              value={formData.confirm_password}
-              onChange={handleChange}
-              id="signup-confirm-password"
-              style={{
-                width: "60%",
-                border: "none",
-                borderBottom: "1px solid #ddd",
-              }}
-            />
-          </div>
+          {[
+            { label: "First Name", name: "first_name", type: "text" },
+            { label: "Last Name", name: "last_name", type: "text" },
+            { label: "Email", name: "email", type: "text" },
+            { label: "Password", name: "password", type: "password" },
+            {
+              label: "Confirm Password",
+              name: "confirm_password",
+              type: "password",
+            },
+          ].map(({ label, name, type }) => (
+            <div key={name} className="flex flex-col gap-1.5 mb-2.5">
+              <label htmlFor={`signup-${name}`} aria-label={label}>
+                {label}
+              </label>
+              <input
+                type={type}
+                name={name}
+                value={formData[name as keyof typeof formData] || ""}
+                onChange={handleChange}
+                id={`signup-${name}`}
+                className="w-[60%] border-none border-b border-gray-300 focus:outline-none"
+              />
+            </div>
+          ))}
           <button
-            style={{
-              width: "60%",
-              color: "white",
-              backgroundColor: THEME_COLOR,
-              marginTop: "20px",
-              padding: "10px 0",
-              cursor: "pointer",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              border: 0,
-            }}
+            className="w-[60%] text-white bg-[THEME_COLOR] mt-5 py-2.5 cursor-pointer flex justify-center items-center border-none focus:outline-none"
             tabIndex={0}
           >
             Signup

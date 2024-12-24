@@ -30,13 +30,10 @@ const Banners: React.FC = () => {
   return (
     <>
       {banner && (
-        <div className="banner-container" style={{ position: "relative" }}>
+        <div className="relative top-[40%] mb-5">
           {Component}
           <button
-            className="banner-navigation-buttons"
-            style={{
-              left: "30px",
-            }}
+            className="absolute top-1/2 bg-[rgba(119,119,119,0.8)] p-[5px_12px] cursor-pointer border-transparent text-white text-[20px] rounded-full left-[30px]"
             onClick={(_) =>
               setCurrent((current) => banners.length - current - 1)
             }
@@ -44,10 +41,7 @@ const Banners: React.FC = () => {
             {"<"}
           </button>
           <button
-            className="banner-navigation-buttons"
-            style={{
-              right: "30px",
-            }}
+            className="absolute top-1/2 bg-[rgba(119,119,119,0.8)] p-[5px_12px] cursor-pointer border-transparent text-white text-[20px] rounded-full right-[30px]"
             onClick={(_) =>
               setCurrent((current) => (current + 1) % banners.length)
             }
