@@ -21,6 +21,7 @@ export const Header = () => {
     if (window.innerWidth < 701) setImgSrc("/static/images/logo.png")
     else setImgSrc("/static/images/logo_2x.png")
   }, [])
+  
   const handleLogoutButton = () => {
     logout()
       .then(() => {
@@ -29,6 +30,7 @@ export const Header = () => {
       })
       .catch(console.log)
   }
+  
   return (
     <header className="header">
       <div className="header-content">

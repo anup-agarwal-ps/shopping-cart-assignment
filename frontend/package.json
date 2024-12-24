@@ -12,7 +12,6 @@
     "test:watch": "jest --watch",
     "test-coverage": "jest --coverage --watchAll=false"
   },
-  "sideEffects": false,
   "keywords": [],
   "author": "",
   "license": "ISC",
