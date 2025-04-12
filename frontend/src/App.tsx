@@ -18,9 +18,13 @@ import ReloadHandler from "./components/ReloadHandler"
 
 const LazyHome = React.lazy(() => import("./views/home"))
 const LazyProducts = React.lazy(() => import("./views/products"))
-const LazyLogin = React.lazy(() => import("./views/auth/login"))
+const LazyLogin = React.lazy(
+  () => import(/* webpackPreload:true */ "./views/auth/login"),
+)
 const LazyRegister = React.lazy(() => import("./views/auth/signup"))
-const LazyCart = React.lazy(() => import("./views/cart"))
+const LazyCart = React.lazy(
+  () => import(/* webpackPrefetch:true */ "./views/cart"),
+)
 
 Axios.defaults.baseURL = process.env.API_URL || ""
 

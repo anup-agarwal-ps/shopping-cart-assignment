@@ -21,7 +21,7 @@ export const Header = () => {
     if (window.innerWidth < 701) setImgSrc("/static/images/logo.png")
     else setImgSrc("/static/images/logo_2x.png")
   }, [])
-  
+
   const handleLogoutButton = () => {
     logout()
       .then(() => {
@@ -30,7 +30,7 @@ export const Header = () => {
       })
       .catch(console.log)
   }
-  
+
   return (
     <header className="w-full min-h-[40px] max-h-[80px] border-b border-gray-300 fixed flex items-center bg-white z-[100] max-[1180px]:h-[7%]">
       <div className="w-[90%] mx-auto flex justify-between items-center">
@@ -60,7 +60,8 @@ export const Header = () => {
           </button>
           {isUserLoggedIn ? (
             <button
-              className="text-[THEME_COLOR] mx-[20px] bg-transparent border-none cursor-pointer"
+              className="mx-[20px] bg-transparent border-none cursor-pointer"
+              style={{ color: THEME_COLOR }}
               tabIndex={0}
               onClick={() => handleLogoutButton()}
             >
@@ -68,7 +69,8 @@ export const Header = () => {
             </button>
           ) : (
             <button
-              className="text-[THEME_COLOR] bg-transparent border-none mx-[20px] cursor-pointer"
+              className="bg-transparent border-none mx-[20px] cursor-pointer"
+              style={{ color: THEME_COLOR }}
               tabIndex={0}
               onClick={() =>
                 navigate(

@@ -35,6 +35,12 @@ const Products: React.FC<Props> = () => {
     callAPI()
   }, [setLoading])
 
+  useEffect(() => {
+    import("../products")
+      .then((_) => console.log("products module prefetched"))
+      .catch((_) => console.log("failed to prefetch products page"))
+  }, [])
+
   return (
     <>
       {BannerComponent}

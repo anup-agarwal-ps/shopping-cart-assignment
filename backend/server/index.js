@@ -2,7 +2,6 @@ require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const bodyParser = require("body-parser")
-const serverlessHttp = require("serverless-http")
 const { PORT } = require("./config/credentials")
 const app = express()
 app.use(cors())
@@ -11,12 +10,9 @@ const { Router } = require("./router")
 
 app.use(express.static("build"))
 
-app.use("/api", Router)
+app.use("/", Router)
 
-if (process.env.IS_SLS === "Yes") {
-  module.exports = { app: serverlessHttp(app) }
-}
-else {
+const bootstrap = () => {
   try {
     app.listen(PORT, () =>
       console.log(`Shopping API listening on port ${PORT}!`)
@@ -25,3 +21,4 @@ else {
     console.log(error)
   }
 }
+bootstrap()

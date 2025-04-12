@@ -4,7 +4,6 @@
   "description": "This is a shopping cart coding exercise",
   "main": "index.js",
   "scripts": {
-    "deploy-sls": "sls deploy",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
     "format": "prettier --write ./server/"

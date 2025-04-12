@@ -71,7 +71,8 @@ const Signup = () => {
             </div>
           ))}
           <button
-            className="w-[60%] text-white bg-[THEME_COLOR] mt-5 py-2.5 cursor-pointer flex justify-center items-center border-none focus:outline-none"
+            className="w-[60%] text-whit mt-5 py-2.5 cursor-pointer flex justify-center items-center border-none focus:outline-none"
+            style={{ backgroundColor: THEME_COLOR }}
             tabIndex={0}
           >
             Signup

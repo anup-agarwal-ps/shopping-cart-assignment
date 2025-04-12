@@ -5,16 +5,11 @@ import { isUserAuthenticated } from "../apis/is-user-authenticated"
 const ReloadHandler = () => {
   const { setIsUserLoggedIn } = useContext(AuthContext)
   useEffect(() => {
-    const callAPI = async () => {
-      try {
-        await isUserAuthenticated()
-        setIsUserLoggedIn(true)
-      } catch (error) {
-        localStorage.removeItem("token")
-        setIsUserLoggedIn(false)
-      }
+    if (localStorage.getItem("token")) setIsUserLoggedIn(true)
+    else {
+      localStorage.removeItem("token")
+      setIsUserLoggedIn(false)
     }
-    callAPI()
   }, [])
 
   return null

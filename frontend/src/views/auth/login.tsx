@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { THEME_COLOR } from "../../constants/colors"
 import { AuthContext } from "../../context/auth"
 import { login } from "../../apis/login"
@@ -9,6 +9,12 @@ const Login = (props: Props) => {
   const { setIsUserLoggedIn } = useContext(AuthContext)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  useEffect(() => {
+    import("../home")
+      .then((_) => console.log("home module prefetched"))
+      .catch((_) => console.log("failed to prefetch home page"))
+  }, [])
 
   return (
     <div className="flex justify-around w-[80%] mx-auto items-start pt-12 pb-12">
@@ -57,7 +63,8 @@ const Login = (props: Props) => {
             />
           </div>
           <button
-            className="w-[60%] text-white bg-[THEME_COLOR] mt-5 p-2.5 cursor-pointer flex justify-center items-center border-none focus:outline-none"
+            className={`w-[60%] text-white mt-5 p-2.5 cursor-pointer flex justify-center items-center border-none focus:outline-none`}
+            style={{ backgroundColor: THEME_COLOR }}
             tabIndex={0}
           >
             Login

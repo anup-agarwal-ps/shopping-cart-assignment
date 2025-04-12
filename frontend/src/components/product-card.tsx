@@ -66,12 +66,16 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
                   _.stopPropagation()
                   addItem(product, 1)
                 }}
-                className="bg-[THEME_COLOR] text-white w-full py-2.5 px-2.5 border-transparent cursor-pointer"
+                className="text-white w-full py-2.5 px-2.5 border-transparent cursor-pointer"
+                style={{ backgroundColor: THEME_COLOR }}
               >
                 Add
               </button>
             ) : (
-              <div className="flex bg-[THEME_COLOR] text-white w-full h-[30px] border-transparent justify-between items-center">
+              <div
+                className="flex text-white w-full h-[30px] border-transparent justify-between items-center"
+                style={{ backgroundColor: THEME_COLOR }}
+              >
                 <button
                   className="p-1 m-0 bg-transparent border-0 text-white cursor-pointer"
                   onClick={(_) => {

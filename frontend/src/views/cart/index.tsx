@@ -75,7 +75,8 @@ const Cart = (props: Props) => {
                             e.stopPropagation()
                             addItem(product, -1)
                           }}
-                          className="cursor-pointer border-0 text-white px-3 py-1.5 rounded-full bg-[THEME_COLOR]"
+                          className="cursor-pointer border-0 text-white px-3 py-1.5 rounded-full"
+                          style={{ backgroundColor: THEME_COLOR }}
                         >
                           -
                         </button>
@@ -88,7 +89,8 @@ const Cart = (props: Props) => {
                             if (product.stock > product.quantity)
                               addItem(product, 1)
                           }}
-                          className="cursor-pointer border-0 text-white px-3 py-1.5 rounded-full bg-[THEME_COLOR]"
+                          className="cursor-pointer border-0 text-white px-3 py-1.5 rounded-full"
+                          style={{ backgroundColor: THEME_COLOR }}
                         >
                           +
                         </button>
@@ -112,7 +114,8 @@ const Cart = (props: Props) => {
               <p>Promo code can be applied on payment page</p>
               <div
                 role="button"
-                className="flex items-center justify-between text-white mt-2.5 h-[35px] px-3.5 bg-[THEME_COLOR] rounded cursor-pointer"
+                className="flex items-center justify-between text-white mt-2.5 h-[35px] px-3.5 rounded cursor-pointer"
+                style={{ backgroundColor: THEME_COLOR }}
               >
                 <button className="bg-transparent border-0 text-white">
                   Proceed to checkout
@@ -133,7 +136,10 @@ const Cart = (props: Props) => {
               role="button"
               onClick={() => setIsCartDisplayed(false)}
             >
-              <button className="flex items-center justify-center w-full h-[35px] mt-2.5 px-3.5 bg-[THEME_COLOR] rounded text-white border-0 cursor-pointer">
+              <button
+                className="flex items-center justify-center w-full h-[35px] mt-2.5 px-3.5 rounded text-white border-0 cursor-pointer"
+                style={{ backgroundColor: THEME_COLOR }}
+              >
                 <div>Keep Shopping</div>
               </button>
             </div>

@@ -43,7 +43,8 @@ export const Category: React.FC<Props> = ({ category, index }) => {
             {category.description}
           </p>
           <button
-            className="cursor-pointer text-white p-5 border-transparent rounded bg-[THEME_COLOR] max-[1500px]:p-1.5 max-[1500px]:text-[10px] max-[800px]:p-1.5 max-[800px]:text-[10px]"
+            className="cursor-pointer text-white p-5 border-transparent rounded max-[1500px]:p-1.5 max-[1500px]:text-[10px] max-[800px]:p-1.5 max-[800px]:text-[10px]"
+            style={{ backgroundColor: THEME_COLOR }}
             onClick={() => {
               navigate(PRODUCTS_PAGE)
             }}
