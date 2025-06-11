@@ -49,11 +49,6 @@ module.exports = (...args) => {
       new DefinePlugin({
         "process": JSON.stringify({ env })
       }),
-      new CopyWebpackPlugin({
-        patterns: [
-          { from: "public/static/images", to: "static/images" },
-        ],
-      }),
       new MiniCssExtractPlugin(),
     ]
   }
