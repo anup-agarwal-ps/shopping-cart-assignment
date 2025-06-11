@@ -11,6 +11,8 @@ const ProductImage = ({
     <img
       alt={alt}
       title={description}
+      height="200px"
+      width="150px"
       src={imageURL}
       className="product-image"
     />

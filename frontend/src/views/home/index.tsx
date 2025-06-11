@@ -48,7 +48,6 @@ const Products: React.FC<Props> = () => {
         {categories
           .filter(({ enabled }) => enabled)
           .map((category, index) => {
-            // if (index > 0) return null
             return (
               <Category category={category} key={category.id} index={index} />
             )

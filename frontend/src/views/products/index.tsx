@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { getProducts, Product } from "../../apis/product"
 import { ProductCard } from "../../components/product-card"
-import { GREY_COLOR } from "../../constants/colors"
 import { CartContext } from "../../context/cart"
 import { Sidebar } from "../../layout/sidebar"
 
@@ -40,18 +39,18 @@ const Products: React.FC<Props> = () => {
   }, [selectedCategory, products])
 
   return (
-    <div className="bg-[GREY_COLOR]">
-      <main className="flex items-start justify-between">
+    <div className={`w-full pt-4 bg-white flex items-start`}>
+      <div className="w-0 md:w-2/12">
         <Sidebar
           selectCategoryHandler={setSelectedCategory}
           selectedCategory={selectedCategory}
         />
-        <ul className="bg-white w-full flex flex-wrap items-center content-start box-border p-4 pt-0 min-h-screen">
-          {filteredProducts.map((product) => (
-            <ProductCard product={product} key={product.id} />
-          ))}
-        </ul>
-      </main>
+      </div>
+      <ul className="w-full lg:w-10/12 flex flex-wrap">
+        {filteredProducts.map((product, index) => {
+          return <ProductCard product={product} key={product.id} />
+        })}
+      </ul>
     </div>
   )
 }

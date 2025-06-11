@@ -25,7 +25,7 @@ export const Sidebar: React.FC<Props> = ({
 
   return (
     <aside
-      className={`flex-[0_0_18%] border border-gray-300 p-0 pb-5 bg-[${GREY_COLOR}] min-h-[${window.innerHeight}px] 
+      className={`flex-[0_0_18%] border border-gray-300 p-0 pb-5 bg-[${GREY_COLOR}] min-h-[95vh]
         max-[1180px]:flex-[0_0_30%] max-[800px]:hidden`}
     >
       <ul>
@@ -33,7 +33,7 @@ export const Sidebar: React.FC<Props> = ({
           .filter((category) => category.enabled === true)
           .map((category) => (
             <li
-              className={`list-none border-b border-gray-300 cursor-pointer ${
+              className={`list-none border-b-2 border-white cursor-pointer ${
                 category.id === selectedCategory ? "bg-white" : "bg-transparent"
               }`}
               onClick={(e) => e.stopPropagation()}

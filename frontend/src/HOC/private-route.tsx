@@ -14,7 +14,7 @@ const PrivateRoute: React.FC<Props> = ({ Component }) => {
 
   return isUserLoggedIn === true ? (
     <div className="relative flex flex-col min-h-[100vh]">
-      <div className="flex-grow">
+      <div className="min-h-[100vh]">
         <Header />
         <main className="w-[90%] mx-auto pt-[100px] sm:w-full sm:pt-[80px]">
           <Component />

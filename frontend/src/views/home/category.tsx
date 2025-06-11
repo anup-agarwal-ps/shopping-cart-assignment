@@ -24,8 +24,6 @@ export const Category: React.FC<Props> = ({ category, index }) => {
     )
   }, [category])
 
-  console.log(category)
-
   return (
     <>
       {index > 0 ? (
