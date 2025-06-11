@@ -4,7 +4,7 @@ const { SECRET_KEY } = require("../config/credentials")
 
 const login = async (req, res) => {
   const { email, password } = req.body
-  if (email === "test@test.com" && password === "password") {
+  if (email === "test@test.com" && password === "G4x^p$1Qs*Tz8n@w") {
     const userDetails = { email }
     const token = jwt.sign({ ...userDetails }, SECRET_KEY)
     res.send({

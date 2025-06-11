@@ -13,16 +13,14 @@ const PrivateRoute: React.FC<Props> = ({ Component }) => {
   const { isUserLoggedIn } = useContext(AuthContext)
 
   return isUserLoggedIn === true ? (
-    <div className="relative bg-white">
-      <Header />
-      <div className="w-[90%] mx-auto pt-[100px] sm:w-full sm:pt-[80px]">
-        <main>
+    <div className="relative flex flex-col min-h-[100vh]">
+      <div className="flex-grow">
+        <Header />
+        <main className="w-[90%] mx-auto pt-[100px] sm:w-full sm:pt-[80px]">
           <Component />
         </main>
       </div>
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   ) : isUserLoggedIn === false ? (
     <Navigate to={LOGIN_PAGE} />

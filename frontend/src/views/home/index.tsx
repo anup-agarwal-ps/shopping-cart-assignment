@@ -44,12 +44,15 @@ const Products: React.FC<Props> = () => {
   return (
     <>
       {BannerComponent}
-      <ul className="w-full flex items-center justify-between pl-7">
+      <ul className="w-full flex flex-col items-center justify-between pl-7">
         {categories
           .filter(({ enabled }) => enabled)
-          .map((category, index) => (
-            <Category category={category} key={category.id} index={index} />
-          ))}
+          .map((category, index) => {
+            // if (index > 0) return null
+            return (
+              <Category category={category} key={category.id} index={index} />
+            )
+          })}
       </ul>
     </>
   )

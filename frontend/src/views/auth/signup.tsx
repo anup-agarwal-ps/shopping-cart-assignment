@@ -3,6 +3,7 @@ import { THEME_COLOR } from "../../constants/colors"
 import { signUp } from "../../apis/signup"
 import { useNavigate } from "react-router"
 import { LOGIN_PAGE } from "../../constants/routes"
+import InputWrapper from "../../components/InputWrapper"
 
 const Signup = () => {
   const navigate = useNavigate()
@@ -30,55 +31,53 @@ const Signup = () => {
   }
 
   return (
-    <div className="flex justify-around w-[80%] mx-auto items-start pt-12 pb-12">
-      <div className="flex-[0_0_40%] flex justify-center items-center">
+    <div className="w-9/12 mx-auto py-12 flex flex-col lg:gap-10 lg:flex-row gap-0 ">
+      <div className="w-full lg:w-5/12 pb-10">
         <div>
           <h1 className="text-2xl font-bold">Signup</h1>
           <p className="pt-6">We do not share personal details with anyone.</p>
         </div>
       </div>
-      <div className="flex-[0_0_60%]">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault()
-            e.stopPropagation()
-            handleSubmit()
-          }}
+      <form
+        className="w-full lg:w-7/12 flex flex-col gap-2"
+        onSubmit={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          handleSubmit()
+        }}
+      >
+        {[
+          { label: "First Name", name: "first_name", type: "text" },
+          { label: "Last Name", name: "last_name", type: "text" },
+          { label: "Email", name: "email", type: "text" },
+          { label: "Password", name: "password", type: "password" },
+          {
+            label: "Confirm Password",
+            name: "confirm_password",
+            type: "password",
+          },
+        ].map(({ label, name, type }) => (
+          <div key={name} className="flex flex-col gap-1.5 mb-2.5">
+            <label htmlFor={`signup-${name}`} aria-label={label}>
+              {label}
+            </label>
+            <InputWrapper
+              type={type}
+              name={name}
+              value={formData[name as keyof typeof formData] || ""}
+              onChange={handleChange}
+              id={`signup-${name}`}
+            />
+          </div>
+        ))}
+        <button
+          className="w-[60%] text-whit mt-5 py-2.5 cursor-pointer flex justify-center items-center border-none focus:outline-none"
+          style={{ backgroundColor: THEME_COLOR }}
+          tabIndex={0}
         >
-          {[
-            { label: "First Name", name: "first_name", type: "text" },
-            { label: "Last Name", name: "last_name", type: "text" },
-            { label: "Email", name: "email", type: "text" },
-            { label: "Password", name: "password", type: "password" },
-            {
-              label: "Confirm Password",
-              name: "confirm_password",
-              type: "password",
-            },
-          ].map(({ label, name, type }) => (
-            <div key={name} className="flex flex-col gap-1.5 mb-2.5">
-              <label htmlFor={`signup-${name}`} aria-label={label}>
-                {label}
-              </label>
-              <input
-                type={type}
-                name={name}
-                value={formData[name as keyof typeof formData] || ""}
-                onChange={handleChange}
-                id={`signup-${name}`}
-                className="w-[60%] border-none border-b border-gray-300 focus:outline-none"
-              />
-            </div>
-          ))}
-          <button
-            className="w-[60%] text-whit mt-5 py-2.5 cursor-pointer flex justify-center items-center border-none focus:outline-none"
-            style={{ backgroundColor: THEME_COLOR }}
-            tabIndex={0}
-          >
-            Signup
-          </button>
-        </form>
-      </div>
+          Signup
+        </button>
+      </form>
     </div>
   )
 }

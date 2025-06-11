@@ -30,7 +30,7 @@ const Banners: React.FC = () => {
   return (
     <>
       {banner && (
-        <div className="relative top-[40%] mb-5">
+        <div className="relative top-[40%] mt-5">
           {Component}
           <button
             className="absolute top-1/2 bg-[rgba(119,119,119,0.8)] p-[5px_12px] cursor-pointer border-transparent text-white text-[20px] rounded-full left-[30px]"
