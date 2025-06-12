@@ -4,8 +4,10 @@
   "description": "Sabka bazaar UI",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode=production",
-    "start": "webpack serve --mode=development",
+    "analyze:watch": "chokidar webpack.config.prod.js src --initial --ignore .git --ignore node_modules -c \"webpack -c webpack.config.prod.js --env analyze=true --mode=production\"",
+    "analyze": "webpack -c webpack.config.prod.js --env analyze=true --mode=production",
+    "build": "webpack -c webpack.config.prod.js --mode=production",
+    "dev": "webpack serve -c webpack.config.dev.js --mode=development",
     "format": "prettier --write ./src/",
     "lint": "eslint ./src/ --fix",
     "test": "jest",
@@ -22,8 +24,9 @@
     "@babel/preset-typescript": "^7.26.0",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.21",
     "babel-loader": "^9.2.1",
+    "chokidar-cli": "^3.0.0",
     "core-js": "^3.39.0",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
@@ -34,8 +37,10 @@
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.17",
     "webpack": "^5.97.1",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.2"
+    "webpack-dev-server": "^5.2.2",
+    "webpack-merge": "^6.0.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
