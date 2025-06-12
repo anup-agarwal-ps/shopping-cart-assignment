@@ -4,7 +4,7 @@
   "description": "Sabka bazaar UI",
   "main": "index.js",
   "scripts": {
-    "analyze:watch": "chokidar webpack.config.prod.js src --initial --ignore .git --ignore node_modules -c \"webpack -c webpack.config.prod.js --env analyze=true --mode=production\"",
+    "analyze:watch": "chokidar webpack.config.prod.js --initial -c \"webpack -c webpack.config.prod.js --env analyze=true --mode=production\"",
     "analyze": "webpack -c webpack.config.prod.js --env analyze=true --mode=production",
     "build": "webpack -c webpack.config.prod.js --mode=production",
     "dev": "webpack serve -c webpack.config.dev.js --mode=development",
