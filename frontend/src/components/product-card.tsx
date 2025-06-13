@@ -27,6 +27,8 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     }
   }
 
+  // return <h1>Hi</h1>
+
   return (
     <div className="p-2 box-border w-full md:w-1/2 lg:w-4/12">
       <li className="w-full bg-white border rounded p-3">

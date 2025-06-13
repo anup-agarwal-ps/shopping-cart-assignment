@@ -3,6 +3,13 @@ import LoggedOutRoute from "../../HOC/logged-out-route"
 import { AuthProvider } from "../../context/auth"
 import * as Router from "react-router"
 
+jest.mock("react-router", () => {
+  return {
+    ...jest.requireActual("react-router"),
+    Navigate: jest.fn(),
+  };
+});
+
 describe("Test Auth context", () => {
   const Component = () => <h1>Hello world</h1>
   it("logged-out-route compoment should render provided component when user is logged out", async () => {
@@ -21,7 +28,7 @@ describe("Test Auth context", () => {
       expect(text).toBeInTheDocument()
     })
   })
-  it("logged-out-route compoment should render nothing when user is neither logge in nor logged out", () => {
+  it("logged-out-route compoment should render nothing when user is neither logged in nor logged out", () => {
     render(
       <AuthProvider
         value={{
@@ -36,7 +43,7 @@ describe("Test Auth context", () => {
     expect(text).not.toBeInTheDocument()
   })
   it("logged-out-route compoment should render provided component when user is logged in", async () => {
-    jest.spyOn(Router, "Navigate").mockImplementation(() => <h1>navigate</h1>)
+    Router.Navigate.mockImplementation(() => <h1>navigate</h1>)
     render(
       <AuthProvider
         value={{
@@ -49,7 +56,7 @@ describe("Test Auth context", () => {
     )
     await waitFor(async () => {
       const text = await screen.findByRole("heading", { name: "navigate" })
-      expect(text).toBeInTheDocument()
+      expect(Router.Navigate).toHaveBeenCalled()
     })
   })
 })
