@@ -3,6 +3,7 @@ const ProductDetailImage = ({ imageURL }: { imageURL: string }) => {
     <img
       src={imageURL}
       alt=""
+      role="img"
       style={{
         marginRight: "40px",
         border: "1px solid #ccc",
