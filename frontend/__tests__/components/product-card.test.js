@@ -1,12 +1,12 @@
-import { CartContext } from "../../context/cart"
-import { setMSWServer } from "../../msw-utility"
-import { waitFor, render, screen, getByRole, fireEvent } from "../../test-utils/render-utils"
+import { CartContext } from "../../src/context/cart"
+import { setMSWServer } from "../../test-utils/msw-utility"
 import { rest } from "msw"
+import { waitFor, render, screen, fireEvent } from "../../test-utils/render-utils"
 
-const { ProductCard } = require("../../components/product-card")
+const { ProductCard } = require("../../src/components/product-card")
 
-jest.mock("../../context/cart")
-jest.mock("../../components/product-image")
+jest.mock("../../src/context/cart")
+jest.mock("../../src/components/product-image")
 
 describe("Testing product card component", () => {
   const server = setMSWServer([rest.post("/addToCart", (req, res, ctx) => {

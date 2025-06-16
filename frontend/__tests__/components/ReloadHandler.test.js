@@ -1,6 +1,6 @@
 import { render, waitFor } from "@testing-library/react"
-import ReloadHandler from "../../components/ReloadHandler"
-import { AuthContext } from "../../context/auth"
+import ReloadHandler from "../../src/components/ReloadHandler"
+import { AuthContext } from "../../src/context/auth"
 
 describe("ReloadHandler", () => {
   const mockRemoveItem = jest.fn()

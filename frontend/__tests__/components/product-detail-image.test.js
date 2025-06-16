@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ProductDetailImage from "../../components/product-detail-image";
+import ProductDetailImage from "../../src/components/product-detail-image";
 
 it('should test productDetailImage component', async () => {
   render(<ProductDetailImage imageURL="image url" />)

@@ -1,5 +1,5 @@
 import { render, screen } from "../../test-utils/render-utils"
-import { Loader } from "../../components/Loader"
+import { Loader } from "../../src/components/Loader"
 
 it("should test that loader is visible on UI", () => {
   render(<Loader />)
