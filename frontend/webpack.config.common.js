@@ -1,12 +1,12 @@
 const env = require("dotenv").config().parsed
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const path = require("path")
 const { DefinePlugin } = require("webpack")
 
 module.exports = {
-  entry: "./src/index.tsx",
   output: {
-    filename: "bundle.[contenthash].js",
+    filename: "[name].[contenthash].js",
     path: path.join(__dirname, "dist")
   },
   module: {
@@ -21,7 +21,7 @@ module.exports = {
     extensions: [".js", ".jsx", ".ts", ".tsx"]
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: "./index.html" }),
+    new CleanWebpackPlugin(),
     new DefinePlugin({
       "process": JSON.stringify({ env })
     }),

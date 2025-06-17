@@ -5,6 +5,7 @@ const { default: merge } = require("webpack-merge")
 const commonConfig = require("./webpack.config.common")
 
 const config = {
+  entry: "./src/index.tsx",
   devServer: {
     port: 3000,
     liveReload: false,
@@ -12,7 +13,7 @@ const config = {
     open: true,
     historyApiFallback: true,
   },
-  devtool: "eval",
+  devtool: "eval-cheap-module-source-map",
   module: {
     rules: [
       {

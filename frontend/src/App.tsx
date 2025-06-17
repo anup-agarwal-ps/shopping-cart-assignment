@@ -19,7 +19,7 @@ import ReloadHandler from "./components/ReloadHandler"
 const LazyHome = React.lazy(() => import("./views/home"))
 const LazyProducts = React.lazy(() => import("./views/products"))
 const LazyLogin = React.lazy(
-  () => import(/* webpackPreload:true */ "./views/auth/login"),
+  () => import(/* webpackPrefetch:true */ "./views/auth/login"),
 )
 const LazyRegister = React.lazy(() => import("./views/auth/signup"))
 const LazyCart = React.lazy(
@@ -99,10 +99,7 @@ function App() {
                 path={REGISTER_PAGE}
                 element={<LoggedOutRoute Component={LazyRegister} />}
               />
-              <Route
-                path="*"
-                element={<Navigate to={PRODUCTS_PAGE}></Navigate>}
-              />
+              <Route path="*" element={<Navigate to={PRODUCTS_PAGE} />} />
             </Routes>
           </Suspense>
         </Router>
