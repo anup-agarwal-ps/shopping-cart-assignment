@@ -1,6 +1,5 @@
 const env = require("dotenv").config().parsed
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
 const path = require("path")
 const { DefinePlugin } = require("webpack")
 
@@ -15,6 +14,11 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/,
         use: "babel-loader"
       },
+      ,
+      {
+        test: /\.(jp[e]g|png)$/,
+        type: "asset"
+      }
     ]
   },
   resolve: {

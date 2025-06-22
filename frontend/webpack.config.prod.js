@@ -8,43 +8,56 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
 const commonConfig = require("./webpack.config.common")
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin")
 
 const config = (...args) => {
   const prodConfig = {
-    entry: {
-      index: "./src/index.tsx",
-      react: "./src/reactLib.js",
-      reactDOM: "./src/reactDOMLib.js"
-    },
+    entry: "./src/index.tsx",
     optimization: {
       minimize: true,
-      minimizer: ["...", new CssMinimizerPlugin()],
+      minimizer: ["...", new CssMinimizerPlugin(), new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.sharpMinify,
+          options: {
+            encodeOptions: {
+              jpeg: { quality: 70 },
+              png: { quality: 80 },
+              gif: {},
+              svg: {},
+            },
+          }
+        }
+      })],
       runtimeChunk: "single",
       splitChunks: {
         chunks: "all",
         minChunks: 2,
-        minSize: 20 * 1024,
+        maxSize: 120 * 1024,
+        minSize: 50 * 1024,
         cacheGroups: {
-          axios: {
-            test: /[\\/]node_modules[\\/](axios)[\\/]/,
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-*)[\\/]/,
             name: "reactLibs",
             reuseExistingChunk: true,
+            priority: 100,
+          },
+          axios: {
+            test: /[\\/]node_modules[\\/](axios)[\\/]/,
+            name: "axiosLib",
+            reuseExistingChunk: true,
             priority: 90,
-            enforce: true
           },
           fortawesome_vendor: {
             test: /[\\/]node_modules[\\/]@fortawesome[\\/]/,
             name: "fortawesome",
             reuseExistingChunk: true,
             priority: 80,
-            enforce: true
           },
           node_modules_vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: "vendors",
             reuseExistingChunk: true,
             priority: 70,
-            enforce: true
           },
         }
       },
@@ -62,7 +75,7 @@ const config = (...args) => {
       new PurgeCSSPlugin({
         paths: glob.sync(path.join(__dirname, "src/**/*.{js,jsx,ts,tsx,html}"))
       }),
-      new HtmlWebpackPlugin({ template: "./index.html", chunks: ["runtime", "react", "reactDom", "index"], }),
+      new HtmlWebpackPlugin({ template: "./index.html" }),
       new CompressionPlugin({
         filename: "[base].gz",
         algorithm: "gzip",

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "../../test-utils/render-utils"
+import { render, screen, waitFor } from "../test-utils/render-utils"
 import LoggedOutRoute from "../../src/HOC/logged-out-route"
 import { AuthProvider } from "../../src/context/auth"
 import * as Router from "react-router"

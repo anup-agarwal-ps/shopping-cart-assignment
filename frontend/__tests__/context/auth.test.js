@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "../../test-utils/render-utils"
+import { fireEvent, render, screen } from "../test-utils/render-utils"
 import { AuthContext, AuthProvider } from "../../src/context/auth"
 import { useContext } from "react"
 

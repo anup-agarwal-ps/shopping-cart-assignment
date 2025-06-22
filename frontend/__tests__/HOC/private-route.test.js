@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "../../test-utils/render-utils"
+import { render, screen, waitFor } from "../test-utils/render-utils"
 import PrivateRoute from "../../src/HOC/private-route"
 import { AuthProvider } from "../../src/context/auth"
 import * as Router from "react-router"

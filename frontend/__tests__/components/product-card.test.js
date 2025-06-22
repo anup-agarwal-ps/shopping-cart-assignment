@@ -1,7 +1,7 @@
 import { CartContext } from "../../src/context/cart"
-import { setMSWServer } from "../../test-utils/msw-utility"
+import { setMSWServer } from "../test-utils/msw-utility"
 import { rest } from "msw"
-import { waitFor, render, screen, fireEvent } from "../../test-utils/render-utils"
+import { waitFor, render, screen, fireEvent } from "../test-utils/render-utils"
 
 const { ProductCard } = require("../../src/components/product-card")
 
