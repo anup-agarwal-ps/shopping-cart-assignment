@@ -16,7 +16,7 @@ const PrivateRoute: React.FC<Props> = ({ Component }) => {
     <div className="relative flex flex-col min-h-[100vh]">
       <div className="min-h-[100vh]">
         <Header />
-        <main className="w-[90%] mx-auto pt-[100px] sm:w-full sm:pt-[80px]">
+        <main className="w-[90%] mx-auto pt-[65px] sm:w-full">
           <Component />
         </main>
       </div>

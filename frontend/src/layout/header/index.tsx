@@ -32,7 +32,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="w-full min-h-[40px] max-h-[80px] border-b border-gray-300 fixed flex items-center bg-white z-[100] max-[1180px]:h-[7%]">
+    <header className="w-full h-[80px] border-b border-gray-300 fixed flex items-center bg-white z-[100] ">
       <div className="w-[90%] mx-auto flex justify-between items-center">
         <h1 id="sabka-bazaar-logo" className="hidden bg-black">
           Sabka Bazaar

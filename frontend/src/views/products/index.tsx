@@ -39,14 +39,16 @@ const Products: React.FC<Props> = () => {
   }, [selectedCategory, products])
 
   return (
-    <div className={`w-full pt-4 bg-white flex items-start`}>
-      <div className="w-0 md:w-2/12">
+    <div
+      className={`w-full pb-4 bg-white flex sm:flex-row items-start flex-col pt-1 sm:pt-6`}
+    >
+      <div className={`w-full sm:flex-[1_1_50%] md:flex-[1_1_25%]`}>
         <Sidebar
           selectCategoryHandler={setSelectedCategory}
           selectedCategory={selectedCategory}
         />
       </div>
-      <ul className="w-full lg:w-10/12 flex flex-wrap">
+      <ul className="w-full sm:flex sm:flex-wrap">
         {filteredProducts.map((product, index) => {
           return <ProductCard product={product} key={product.id} />
         })}

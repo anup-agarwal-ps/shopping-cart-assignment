@@ -28,7 +28,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   }
 
   return (
-    <div className="p-2 box-border w-full md:w-1/2 lg:w-4/12">
+    <div className="px-2 box-border w-full md:w-1/2 lg:w-4/12">
       <li className="w-full bg-white border rounded p-3">
         <h3 className="text-base font-medium truncate" title={product.name}>
           {`${product.name.slice(0, 30)}${
@@ -63,7 +63,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
                     addItem(product, 1)
                   }}
                   style={{ backgroundColor: THEME_COLOR }}
-                  className="w-full py-2 text-white font-semibold rounded"
+                  className="w-full py-2 text-white font-semibold rounded px-2"
                 >
                   Buy Now @ MRP Rs. {product.price}
                 </button>

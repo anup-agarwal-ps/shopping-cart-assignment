@@ -8,6 +8,6 @@ module.exports = {
   },
 
   collectCoverage: true,
-  collectCoverageFrom: ["src/**/*"]
+  collectCoverageFrom: ["src/**/*", "!src/*", "!src/apis/*"]
 
 };
